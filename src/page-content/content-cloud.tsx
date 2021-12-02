@@ -32,18 +32,13 @@ export const hero: HeroProps = {
     </>
   ),
   description:
-    'Ory is the only identity platform that can scale indefinitely and is based entirely on open source.',
+    'Ory Cloud is the only identity platform is based entirely on open source.',
 
   buttons: [
     {
-      ctaTitle: 'Start Building',
+      ctaTitle: 'Start Building. No Credit Card required.',
       style: 'filled',
       to: 'https://console.ory.sh/registration'
-    },
-    {
-      ctaTitle: 'Contact',
-      style: 'outlined',
-      to: 'mailto:office@ory.sh'
     }
   ]
 }
@@ -55,19 +50,19 @@ export const featureContentCloud: FeatureContentProps = {
   overline: <>Ory Cloud</>,
   title: (
     <>
-      <span className={'is-mute-text'}>Powerful,</span>
-      {''} elegant
+      <span className={'is-mute-text'}>Fast, scalabe,</span>
+      {''} secure
     </>
   ),
   description: (
     <>
-      Authenticate and manage users, set and check permissions, protect your
-      APIs, applications, and data - all inside an intuitive console.
+      Authenticate and manage user onboarding flows and identities, protect your
+      APIs, applications, and data - through the command line or an intuitive console.
     </>
   ),
   button: {
-    ctaTitle: 'Sign up',
-    to: 'https://console.ory.sh',
+    ctaTitle: 'Start Building. No Credit Card required.',
+    to: 'https://console.ory.sh/registration',
     iconRight: ArrowRight
   },
   content: (
@@ -79,27 +74,18 @@ export const featureContentCloud: FeatureContentProps = {
     />
   ),
   feature: {
-    title: <>Built for developers</>,
+    title: <>Painless integration</>,
     description: (
       <>
-        We built the console we wished we had - it's packed with features that
-        make setting up identity infrastructure fast and painless.
+        Forget setting up Kubernetes, Ingress, routing, and CI/CD. Connect your APIs and frontend and let Ory Cloud handle the heavy lifting.
       </>
     ),
     features: [
       {
-        title: <>Feature rich</>,
+        title: <>Built for developers</>,
         description: (
           <>
-            MFA, permissions and roles, custom branding and flows, OAuth 2.0,
-            OIDC, IAP, RBAC, integrations{' '}
-            <Button
-              to={'https://www.ory.sh/docs/ecosystem/projects'}
-              style={'link-inline'}
-            >
-              and more
-            </Button>
-            .
+           We built the API and console we wished we had - make setting up identity infrastructure fast and painless.
           </>
         )
       },
@@ -111,12 +97,12 @@ export const featureContentCloud: FeatureContentProps = {
             <Button to={'/open-source'} style={'link-inline'}>
               open source
             </Button>{' '}
-            software and grows with every community member and pull-request.
+            software and improves daily with every community member and pull-request.
           </>
         )
       },
       {
-        title: <>Transparency</>,
+        title: <>Fair pricing</>,
         description: (
           <>
             No limits on identities are part of all{' '}
@@ -128,11 +114,10 @@ export const featureContentCloud: FeatureContentProps = {
         )
       },
       {
-        title: <>No lock in</>,
+        title: <>Security not optional</>,
         description: (
           <>
-            Migration to and from Ory Cloud is simple. No lock-in on vital
-            systems.
+          Essential security included, dont pay extra for vital security features like MFA.
           </>
         )
       }
@@ -147,15 +132,13 @@ export const featureContentUX: FeatureContentProps = {
   overline: 'Bring your own UI',
   title: (
     <>
-      <span className={'is-mute-text'}>Your login,</span>
-      {''} your design
+      <span className={'is-mute-text'}>Take back</span>
+      {' '} control
     </>
   ),
   description: (
     <>
-      Ory is completely headless - use your styles and design, and let your
-      designers take back control. Custom user-facing interfaces and flows
-      included.
+      Ory Cloud is built for maximum adaptability - use your styles and design, identity schemas and UX flows. Ory Cloud is flexible and can be adapted to your needs.
     </>
   ),
   button: {
@@ -212,7 +195,7 @@ export const coding: CodingProps = {
   overline: 'Modern tooling',
   title: (
     <>
-      <span className={'is-mute-text'}>We're all about</span>
+      <span className={'is-mute-text'}>All about</span>
       {''} developer experience
     </>
   ),
@@ -220,8 +203,7 @@ export const coding: CodingProps = {
     <>
       SDKs for any language, clear documentation, tutorials, and community
       support are our standards. Our open source approach also means you get to
-      participate in API and architecture discussions - your next PR will be
-      shipped in Ory Cloud.
+      participate in API and architecture discussions - and influence the roadmap.
     </>
   ),
   button: {
