@@ -19,7 +19,6 @@ const IndexPage = () => (
     <SEO {...content.seo} />
     <Hero {...content.hero} />
     <Adopters {...sharedAdopters} />
-    <Stats {...sharedStats} />
     <FeatureContent {...content.featureContentCloud} />
     <Quotes {...sharedQuotes} />
     <Quickstart {...content.quickstart} />

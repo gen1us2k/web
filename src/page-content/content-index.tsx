@@ -28,14 +28,14 @@ export const hero: HeroProps = {
   id: 'index.hero',
   title: (
     <>
-      <span className={'is-themed-primary'}>Limitless</span> identities
+      <span className={'is-themed-primary'}>CONVENIENCE PRIVACY</span> SECURITY
     </>
   ),
   description:
-    'Ory provides free and open identity infrastructure, securing millions of users worldwide.',
+    'Ory is an easy-to-implement, customizable authentication and authorization platform.',
   buttons: [
     {
-      ctaTitle: 'Try Ory Cloud free',
+      ctaTitle: 'Test Now',
       style: 'filled',
       to: '/cloud'
     }
@@ -49,19 +49,19 @@ export const featureContentCloud: FeatureContentProps = {
   overline: <>The future of identity</>,
   title: (
     <>
-      <span className={'is-mute-text'}>Never build authentication</span>
-      {''} again
+      <span className={'is-mute-text'}>Easy-to-implement</span>
+      {''} authentication
     </>
   ),
   description: (
     <>
-      Ory provides adaptable services and APIs for authentication,
-      authorization, access control, OAuth2.0, Zero Trust.
+      Identity is so much more than just APIs for authentication,
+      authorization, access control, OAuth2.0 and Zero Trust. Let’s take a look at everything you can do!
     </>
   ),
   button: {
     ctaTitle: 'Learn more',
-    to: 'https://www.ory.sh/docs/',
+    to: 'https://www.ory.sh/open-source',
     iconRight: ArrowRight
   },
   content: (
@@ -73,17 +73,15 @@ export const featureContentCloud: FeatureContentProps = {
     />
   ),
   feature: {
-    title: <>Open Source</>,
+    title: <>Modern Identity Management</>,
     description: (
       <>
-        Ory has an open source architecture, attitude, and heart. We strive to
-        allow everyone, regardless of economic background, to build a better
-        world with software.
+        Demand for enterprise federation, single sign-on, and multifactor auth is skyrocketing. These features offer enhanced security and upsell opportunities that customers will pay for..
       </>
     ),
     features: [
       {
-        title: <>Feature rich</>,
+        title: <>Secure</>,
         description: (
           <>
             MFA, permissions and roles, custom branding and flows, OAuth 2.0,
@@ -99,7 +97,7 @@ export const featureContentCloud: FeatureContentProps = {
         )
       },
       {
-        title: <>Developer focused</>,
+        title: <>Customizable</>,
         description: (
           <>
             Ory is based on{' '}
