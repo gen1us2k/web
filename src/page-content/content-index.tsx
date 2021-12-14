@@ -28,11 +28,11 @@ export const hero: HeroProps = {
   id: 'index.hero',
   title: (
     <>
-      <span className={'is-themed-primary'}>CONVENIENCE PRIVACY</span> SECURITY
+      <span className={'is-themed-primary'}>Open Source</span> Identity APIs
     </>
   ),
   description:
-    'Ory is an easy-to-implement, customizable authentication and authorization platform.',
+    'Ory builds scalable authentication and authorization infrastructure for cloud applications.',
   buttons: [
     {
       ctaTitle: 'Test Now',
@@ -55,12 +55,12 @@ export const featureContentCloud: FeatureContentProps = {
   ),
   description: (
     <>
-      Identity is so much more than just APIs for authentication,
-      authorization, access control, OAuth2.0 and Zero Trust. Let’s take a look at everything you can do!
+      Identity is more than just APIs for authentication,
+      authorization, access control, OAuth2.0 and Zero Trust infrastructure.
     </>
   ),
   button: {
-    ctaTitle: 'Learn more',
+    ctaTitle: 'Ory Open Source',
     to: 'https://www.ory.sh/open-source',
     iconRight: ArrowRight
   },
@@ -76,7 +76,7 @@ export const featureContentCloud: FeatureContentProps = {
     title: <>Modern Identity Management</>,
     description: (
       <>
-        Demand for enterprise federation, single sign-on, and multifactor auth is skyrocketing. These features offer enhanced security and upsell opportunities that customers will pay for..
+        Demand for enterprise federation, single sign-on, and multifactor authentication is skyrocketing. A modern service offers enhanced security and upsell opportunities that customers will pay for.
       </>
     ),
     features: [
@@ -266,8 +266,8 @@ export const quickstart: QuickstartProps = {
   ),
   description: (
     <>
-      Get started right away and explore Ory Cloud, or contact us for a custom
-      support package that's tailor-made for you.
+      Get started right away and explore Ory, or contact us for a custom
+      support package.
     </>
   ),
   buttons: [
@@ -277,9 +277,9 @@ export const quickstart: QuickstartProps = {
       to: 'https://console.ory.sh/registration'
     },
     {
-      ctaTitle: 'Contact sales',
+      ctaTitle: 'Contact',
       style: 'outlined',
-      to: 'mailto:office@ory.sh'
+      to: 'mailto:sales@ory.sh'
     }
   ],
   content: [

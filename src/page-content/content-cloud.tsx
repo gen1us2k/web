@@ -32,11 +32,11 @@ export const hero: HeroProps = {
     </>
   ),
   description:
-    'Ory Cloud is the only identity platform is based entirely on open source.',
-
+  <>Integrate modern identity services with Ory Cloud. Batteries included.<span className={'is-themed-primary'}> Based on Ory Open Source. </span>
+</>,
   buttons: [
     {
-      ctaTitle: 'Start Building. No Credit Card required.',
+      ctaTitle: 'Start Building.',
       style: 'filled',
       to: 'https://console.ory.sh/registration'
     }
@@ -100,7 +100,7 @@ export const featureContentCloud: FeatureContentProps = {
             <Button to={'/open-source'} style={'link-inline'}>
               open source
             </Button>{' '}
-            software and improves daily with every community member and
+            software and improves with every community member and
             pull-request.
           </>
         )
@@ -294,9 +294,9 @@ export const quickstart: QuickstartProps = {
       to: 'https://console.ory.sh/registration'
     },
     {
-      ctaTitle: 'Contact sales',
+      ctaTitle: 'Contact',
       style: 'outlined',
-      to: 'mailto:office@ory.sh'
+      to: 'mailto:sales@ory.sh'
     }
   ],
   content: [

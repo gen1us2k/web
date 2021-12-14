@@ -11,7 +11,7 @@ import { hero } from './hero.module.css'
 export interface PropTypes {
   id: string
   title: string | React.ReactElement
-  description: string
+  description: string | React.ReactElement
   buttons?: Array<HeroCTA>
 }
 
