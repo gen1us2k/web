@@ -55,8 +55,8 @@ export const featureContentCloud: FeatureContentProps = {
   ),
   description: (
     <>
-      Identity is more than just APIs for authentication,
-      authorization, access control, OAuth2.0 and Zero Trust infrastructure.
+      Identity is more than just APIs for authentication, authorization, access
+      control, OAuth2.0 and Zero Trust infrastructure.
     </>
   ),
   button: {
@@ -76,7 +76,9 @@ export const featureContentCloud: FeatureContentProps = {
     title: <>Modern Identity Management</>,
     description: (
       <>
-        Demand for enterprise federation, single sign-on, and multifactor authentication is skyrocketing. A modern service offers enhanced security and upsell opportunities that customers will pay for.
+        Demand for enterprise federation, single sign-on, and multifactor
+        authentication is skyrocketing. A modern service offers enhanced
+        security and upsell opportunities that customers will pay for.
       </>
     ),
     features: [
@@ -90,7 +92,7 @@ export const featureContentCloud: FeatureContentProps = {
               to={'https://www.ory.sh/docs/ecosystem/projects'}
               style={'link-inline'}
             >
-               more
+              more
             </Button>{' '}
             .
           </>
@@ -266,8 +268,8 @@ export const quickstart: QuickstartProps = {
   ),
   description: (
     <>
-      Get started right away and explore Ory, or contact us for a custom
-      support package.
+      Get started right away and explore Ory, or contact us for a custom support
+      package.
     </>
   ),
   buttons: [

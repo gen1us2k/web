@@ -44,7 +44,7 @@ export const dropdownMenu: Pick<NavProps, 'dropdownMenu'> = {
       mainMenu: [
         {
           title: 'Ory Open Source',
-          description: "Ory builds free and open software",
+          description: 'Ory builds free and open software',
           to: '/open-source'
         },
         {

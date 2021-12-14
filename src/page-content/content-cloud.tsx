@@ -31,9 +31,12 @@ export const hero: HeroProps = {
       <span className={'is-themed-primary'}>Cloud native </span> identity
     </>
   ),
-  description:
-  <>Integrate modern identity services with Ory Cloud. Batteries included.<span className={'is-themed-primary'}> Based on Ory Open Source. </span>
-</>,
+  description: (
+    <>
+      Integrate modern identity services with Ory Cloud. Batteries included.
+      <span className={'is-themed-primary'}> Based on Ory Open Source. </span>
+    </>
+  ),
   buttons: [
     {
       ctaTitle: 'Start Building.',
@@ -100,8 +103,7 @@ export const featureContentCloud: FeatureContentProps = {
             <Button to={'/open-source'} style={'link-inline'}>
               open source
             </Button>{' '}
-            software and improves with every community member and
-            pull-request.
+            software and improves with every community member and pull-request.
           </>
         )
       },
