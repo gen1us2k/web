@@ -21,7 +21,18 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
         edges {
           node {
             fileAbsolutePath
+            excerpt(pruneLength: 250)
             frontmatter {
+              publishedAt(formatString: "MMMM DD, YYYY")
+              featuredimage {
+                childImageSharp {
+                  gatsbyImageData
+                }
+              }
+              title
+              subtitle
+              teaser
+              overline
               path
               slug
             }

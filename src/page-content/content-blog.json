@@ -1,0 +1,63 @@
+{
+  "id": "blog.list",
+  "title": "Developer Blog & Articles",
+  "tags": [
+    {
+      "name": "Identity",
+      "seo": {
+        "description": "Identity is a new way of thinking about the world. It's a new way of seeing the world. It's a new way of seeing ourselves. It's a new way of seeing ourselves.",
+        "title": "Identity"
+      }
+    },
+    {
+      "name": "Product"
+    },
+    {
+      "featured": "/choose-recommended-argon2-parameters-password-hashing/",
+      "name": "Authentication"
+    },
+    {
+      "featured": "/choose-recommended-argon2-parameters-password-hashing/",
+      "name": "Security & Compliance"
+    },
+    {
+      "name": "Passwordless"
+    },
+    {
+      "name": "Build vs Buy"
+    },
+    {
+      "featured": "/ghost-post/",
+      "name": "Company updates"
+    },
+    {
+      "name": "Enterprise Readiness"
+    },
+    {
+      "name": "Guide"
+    },
+    {
+      "name": "SaaS"
+    },
+    {
+      "name": "Self Service"
+    },
+    {
+      "name": "User Management"
+    },
+    {
+      "name": "Webhooks"
+    },
+    {
+      "name": "Architecture"
+    },
+    {
+      "name": "Audit Logs"
+    }
+  ],
+  "featured": "/ghost-post/",
+  "seo": {
+    "title": "Ory Developer Blog and Articles",
+    "description": "Read articles and blog posts from Ory core contributors and maintainers."
+  }
+}

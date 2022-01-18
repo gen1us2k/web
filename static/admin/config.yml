@@ -15,6 +15,33 @@ site_url: https://ory.sh
 publish_mode: editorial_workflow
 
 collections:
+  - label: "Configurations"
+    label_singular: "Configuration"
+    name: "configurations"
+    editor:
+      preview: false
+    files:
+      - label: "Blog"
+        name: "blog"
+        file: "src/page-content/content-blog.json"
+        fields:
+          - label: Featured
+            name: featured
+            widget: relation
+            collection: blog
+            value_field: path
+            search_fields:
+              - path
+              - title
+            display_fields:
+              - title
+          - label: "SEO"
+            name: "seo"
+            widget: "object"
+            collapsed: true
+            fields: 
+              - { label: "Title", name: "title", widget: "string", required: false }
+              - { label: "Description", name: "description", widget: "text", required: false }
   - name: "blog"
     label: "Blog posts"
     label_singular: "Blog post"

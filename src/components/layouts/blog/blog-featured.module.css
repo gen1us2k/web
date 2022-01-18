@@ -1,0 +1,66 @@
+.root {
+  background: var(--colors-base-background);
+  min-height: 25wh;
+}
+
+.inner {
+  height: 100%;
+  flex-grow: 1;
+  padding: var(--space-large) var(--space-small);
+  margin-left: calc(50% - var(--space-small));
+  position: relative;
+  background: var(--colors-base-background);
+}
+
+
+@supports (-webkit-backdrop-filter: none) or (backdrop-filter: none) {
+  .inner {
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+    background-color: rgba(255, 255, 255, 0.5);  
+  }
+}
+
+.title {
+  margin-bottom: var(--size-8);
+}
+
+.meta {
+
+}
+
+.metaAuthor {
+  font-size: var(--font-size-body-smaller);
+  color: var(--colors-text-muter);
+  padding-bottom: 16px;
+}
+
+.metaAuthorName {
+
+}
+
+.metaAuthorDate {
+
+}
+
+.metaTeaser {
+
+}
+
+.overline {
+  padding-bottom: var(--size-8);
+}
+
+.excerpt {
+
+}
+
+.readMore {
+  position: absolute;
+  bottom: var(--space-small);
+  right: var(--space-small);
+}
+
+.readMoreButton {
+
+}
