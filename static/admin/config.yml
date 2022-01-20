@@ -52,7 +52,12 @@ collections:
           widget: "hidden",
           default: "blog",
         }
-      - { label: "Path", name: "path", widget: "string",  }
+      - {
+          label: "Path",
+          name: "path",
+          widget: "string",
+          pattern: ["[a-z0-9-]{12,}", "Must be lowercase, only letters, numbers and -"]
+        }
       - { label: "Author", name: "author", widget: "string" }
       - {
           label: "Title",
