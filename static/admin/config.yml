@@ -2,9 +2,9 @@ backend:
   name: git-gateway
   branch: master
   commit_messages:
-    create: "cms: create “{{slug}}”\n\nin {{collection}}"
-    update: "cms: update “{{slug}}”\n\nin {{collection}}"
-    delete: "cms: delete “{{slug}}”\n\nin {{collection}}"
+    create: "cms: create “{{title}}”\n\nin {{collection}}"
+    update: "cms: update “{{title}}”\n\nin {{collection}}"
+    delete: "cms: delete “{{title}}”\n\nin {{collection}}"
     uploadMedia: "cms: upload “{{path}}”\n\n[skip actions]"
     deleteMedia: "cms: delete “{{path}}”\n\n[skip actions]"
 
