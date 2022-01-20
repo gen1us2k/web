@@ -122,7 +122,7 @@ export const featureContentCloud: FeatureContentProps = {
     </>
   ),
   button: {
-    ctaTitle: 'Jump right into it',
+    ctaTitle: 'Get started',
     to: 'https://console.ory.sh/registration',
     iconRight: ArrowRight
   },
@@ -205,7 +205,7 @@ export const featureContentUX: FeatureContentProps = {
   ),
   button: {
     ctaTitle: 'Sign up',
-    to: 'https://console.ory.sh',
+    to: 'https://console.ory.sh/registration',
     iconRight: ArrowRight
   },
   content: (
@@ -271,7 +271,7 @@ export const coding: CodingProps = {
   ),
   button: {
     ctaTitle: 'Visit the documentation',
-    to: '/docs/get-started',
+    to: 'https://www.ory.sh/docs/start-building/',
     iconRight: ArrowRight
   },
   additional: {
@@ -284,7 +284,7 @@ export const coding: CodingProps = {
     ),
     button: {
       ctaTitle: 'Install the CLI',
-      to: '/docs/get-started',
+      to: 'https://www.ory.sh/docs/get-started/ory-cli-install-use',
       iconRight: ArrowRight
     }
   },
@@ -301,7 +301,7 @@ export const coding: CodingProps = {
       ),
       button: (
         <Button
-          to={'/docs/guides/ory-cli-install-use'}
+          to={'https://www.ory.sh/docs/start-building/ory-cli-install-use'}
           style={'link'}
           iconRight={ArrowRight}
         >
