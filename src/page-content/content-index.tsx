@@ -1,4 +1,4 @@
-import { StaticImage } from 'gatsby-plugin-image'
+import {StaticImage} from 'gatsby-plugin-image'
 import React from 'react'
 
 import Button from '../components/freestanding/button/button'
@@ -6,15 +6,17 @@ import CodeBox, {
   Languages,
   PropTypes as CodeBoxProps
 } from '../components/freestanding/codebox/codebox'
-import { PropTypes as CodingProps } from '../components/layouts/coding/coding'
-import { PropTypes as FeatureContentProps } from '../components/layouts/feature-content/feature-content'
-import { PropTypes as HeroProps } from '../components/layouts/hero/hero'
-import { PropTypes as QuickstartProps } from '../components/layouts/quickstart/quickstart'
-import { PropTypes as SeoProps } from '../components/layouts/seo/seo'
+import {PropTypes as CodingProps} from '../components/layouts/coding/coding'
+import {PropTypes as FeatureContentProps} from '../components/layouts/feature-content/feature-content'
+import {PropTypes as HeroProps} from '../components/layouts/hero/hero'
+import {PropTypes as QuickstartProps} from '../components/layouts/quickstart/quickstart'
+import {PropTypes as SeoProps} from '../components/layouts/seo/seo'
+import {PropTypes as HeroImageProps} from "../components/layouts/hero/hero-image";
+import Cloud from "../images/illustrations/hero.png";
 
-const ArrowRight = <i className="ph-arrow-right-bold size16" />
-const Terminal = <i className="ph-terminal-fill size32" />
-const GitMerge = <i className="ph-git-merge-fill size32" />
+const ArrowRight = <i className="ph-arrow-right-bold size16"/>
+const Terminal = <i className="ph-terminal-fill size32"/>
+const GitMerge = <i className="ph-git-merge-fill size32"/>
 
 export const seo: SeoProps = {
   description:
@@ -28,14 +30,14 @@ export const hero: HeroProps = {
   id: 'index.hero',
   title: (
     <>
-      <span className={'is-themed-primary'}>Open Source</span> Identity APIs
+      <span className={'is-themed-primary'}>Open Source </span> Identity Infrastructure
     </>
   ),
   description:
-    'Ory builds scalable authentication and authorization infrastructure for cloud applications.',
+    'Ory is the only identity platform that can scale indefinitely and is based entirely on open source.',
   buttons: [
     {
-      ctaTitle: 'Test Now',
+      ctaTitle: 'Start with Ory Cloud',
       style: 'filled',
       to: '/cloud'
     }
@@ -45,23 +47,52 @@ export const hero: HeroProps = {
 export const featureContentCloud: FeatureContentProps = {
   id: 'index.featurecontent.cloud',
   slant: true,
-  background: 'grey',
-  overline: <>The future of identity</>,
+  overline: <>Get started in minutes with Ory Cloud</>,
   title: (
     <>
-      <span className={'is-mute-text'}>Easy-to-implement</span>
-      {''} authentication
+      <span className={'is-mute-text'}> Hosted by us,</span>
+      {''} Managed by you
     </>
   ),
   description: (
     <>
-      Identity is more than just APIs for authentication, authorization, access
-      control, OAuth2.0 and Zero Trust infrastructure.
+     Benefit from hardened Ory Open Source services and skip the setup with Ory Cloud.
     </>
   ),
   button: {
-    ctaTitle: 'Ory Open Source',
-    to: 'https://www.ory.sh/open-source',
+    ctaTitle: 'Test now',
+    to: 'https://www.ory.sh/cloud',
+    iconRight: ArrowRight
+  },
+  content: (
+    <StaticImage
+      loading="lazy"
+      className="responsive"
+      alt="Ory Open Source Ecosystem Illustration"
+      src="../images/illustrations/examplelogin.png"
+    />
+  )
+}
+
+export const featureContentLogin: FeatureContentProps = {
+  id: 'index.featurecontent.cloud',
+  slant: true,
+  background: 'grey',
+  overline: <>Identity & Access Management</>,
+  title: (
+    <>
+      <span className={'is-mute-text'}>Login and Authentication</span>
+      {''} for Applications.
+    </>
+  ),
+  description: (
+    <>
+      Ory provides open source authentication and access control APIs for everyone. 
+    </>
+  ),
+  button: {
+    ctaTitle: 'Learn more',
+    to: 'https://www.ory.sh/docs/',
     iconRight: ArrowRight
   },
   content: (
@@ -73,40 +104,33 @@ export const featureContentCloud: FeatureContentProps = {
     />
   ),
   feature: {
-    title: <>Modern Identity Management</>,
+    title: <>Built for developers</>,
     description: (
       <>
-        Demand for enterprise federation, single sign-on, and multifactor
-        authentication is skyrocketing. A modern service offers enhanced
-        security and upsell opportunities that customers will pay for.
+        Authenticate and manage users, set and check permissions, protect your APIs, applications, and data.
       </>
     ),
     features: [
       {
-        title: <>Secure</>,
+        title: <>Secure by design</>,
         description: (
           <>
-            MFA, permissions and roles, custom branding and flows, OAuth 2.0,
+MFA, permissions and roles, custom branding and flows, OAuth 2.0,
             OIDC, IAP, RBAC, integrations and{' '}
             <Button
               to={'https://www.ory.sh/docs/ecosystem/projects'}
               style={'link-inline'}
             >
               more
-            </Button>{' '}
-            .
+            </Button>.
           </>
         )
       },
       {
-        title: <>Customizable</>,
+        title: <>Proven Quality</>,
         description: (
           <>
-            Ory is based on{' '}
-            <Button to={'/open-source'} style={'link-inline'}>
-              open source
-            </Button>{' '}
-            software and grows with every community member and pull-request.
+            Ory is rooted in open source software and grows with every community member and pull-request.
           </>
         )
       }
@@ -118,7 +142,7 @@ export const featureContentUX: FeatureContentProps = {
   id: 'index.featurecontent.ux',
   slant: true,
   background: 'dark',
-  overline: 'Bring your own UI',
+  overline: 'Customizable UI',
   title: (
     <>
       <span className={'is-mute-text'}>Your login,</span>
@@ -127,14 +151,12 @@ export const featureContentUX: FeatureContentProps = {
   ),
   description: (
     <>
-      Ory is completely headless - use your styles and design, and let your
-      designers take back control. Custom user-facing interfaces and flows
-      included.
+      Ory is completely headless - bring your own UI in your favorite language. 
     </>
   ),
   button: {
-    ctaTitle: 'Sign up',
-    to: 'https://console.ory.sh',
+    ctaTitle: 'Read more',
+    to: 'https://www.ory.sh/docs/',
     iconRight: ArrowRight
   },
   content: (
@@ -182,7 +204,7 @@ $ ory identities list --project playground
 export const coding: CodingProps = {
   id: 'index.coding',
   slant: true,
-  background: 'light-grey',
+  background: 'grey',
   overline: 'Modern tooling',
   title: (
     <>
@@ -199,7 +221,7 @@ export const coding: CodingProps = {
     </>
   ),
   button: {
-    ctaTitle: 'Visit the documentation',
+    ctaTitle: 'Visit our documentation',
     to: '/docs/get-started',
     iconRight: ArrowRight
   },
@@ -268,34 +290,28 @@ export const quickstart: QuickstartProps = {
   ),
   description: (
     <>
-      Get started right away and explore Ory, or contact us for a custom support
-      package.
+      We want to help with any questions you have! Fill out the Form below and a Ory expert will reach out to discuss your needs.
     </>
   ),
   buttons: [
     {
-      ctaTitle: 'Sign up',
+      ctaTitle: 'Contact us',
       style: 'filled',
-      to: 'https://console.ory.sh/registration'
-    },
-    {
-      ctaTitle: 'Contact',
-      style: 'outlined',
       to: 'mailto:sales@ory.sh'
     }
   ],
   content: [
     {
-      title: <>Delightful Docs</>,
+      title: <>Detailed Docs</>,
       description: (
         <>
-          Breeze through technical concepts, level up with our tutorials or
+          Get started right away and explore Ory! Review our documentation and breeze through technical concepts, level up with our tutorials or
           master our extensive API reference.
         </>
       ),
       button: (
         <Button to={'/docs/'} style={'link'} iconRight={ArrowRight}>
-          Visit the documentation
+          Explore
         </Button>
       )
     },
@@ -303,8 +319,8 @@ export const quickstart: QuickstartProps = {
       title: <>A helpful community</>,
       description: (
         <>
-          Chat with peers, discuss code and gain insights from the open source
-          at the heart of Ory.
+          The Ory Open Source community is a great resource for help and advice. Chat with peers, discuss code and gain insights from the open source
+          at the heart.
         </>
       ),
       button: (
@@ -313,7 +329,7 @@ export const quickstart: QuickstartProps = {
           style={'link'}
           iconRight={ArrowRight}
         >
-          Join the chat on Slack
+          Join us on Slack
         </Button>
       )
     }

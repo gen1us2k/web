@@ -10,7 +10,6 @@ export const sharedStats: StatsProps = {
   description: (
     <>
       Companies from all over the world rely on Ory for their identity needs.
-      Ory technology secures billions of requests every month.
     </>
   )
 }
