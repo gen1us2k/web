@@ -1,6 +1,8 @@
 .root {
   background: var(--colors-base-background);
   min-height: 25wh;
+  border-radius: var(--radius-small);
+  overflow: hidden;
 }
 
 .inner {
@@ -17,7 +19,7 @@
   .inner {
     -webkit-backdrop-filter: blur(10px);
     backdrop-filter: blur(10px);
-    background-color: rgba(255, 255, 255, 0.5);  
+    background-color: rgba(255, 255, 255, 0.75);  
   }
 }
 

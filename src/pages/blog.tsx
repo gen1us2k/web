@@ -6,7 +6,7 @@ import Layout from '../components/layouts/layout/layout'
 import SEO from '../components/layouts/seo/seo'
 import content from '../page-content/content-blog.json'
 import BlogFeatured from '../components/layouts/blog/blog-featured'
-
+import BlogTags, { slugify } from '../components/layouts/blog/blog-tags'
 
 const BlogPage = () => {
   const blogPosts = useStaticQuery(graphql`
@@ -32,7 +32,10 @@ const BlogPage = () => {
             seo {
               title
               description
+              keywords
             }
+            tags
+            category
             publishedAt(formatString: "MMMM DD, YYYY")
             author
             path
@@ -55,6 +58,10 @@ const BlogPage = () => {
       <SEO {...content.seo} />
 
       {featured?.node?.frontmatter?.featuredimage && <BlogFeatured {...featured.node} />}
+
+      <BlogTags
+        tags={content.tags.map(({ name }) => ({ name, slug: slugify(name) }))}
+      />
 
       <BlogList
         id={content.id}

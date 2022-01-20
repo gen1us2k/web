@@ -98,7 +98,7 @@ export const BlogListItem = ({ node }: { node: BlogPostNode }) => (
 const BlogList = ({
   id,
   title,
-  posts: blogPosts,
+  posts,
 }: PropTypes) => {
   return (
     <div id={id} className={cn(styles.blogList)}>
@@ -116,9 +116,7 @@ const BlogList = ({
             </Grid>
           </Container>
           <Container alignItems={'stretch'} justify={'start'}>
-            {(blogPosts).map((node) => (
-              <BlogListItem node={node} />
-            ))}
+            {(posts || []).map((node) => (<BlogListItem key={node.id} node={node} />))}
           </Container>
         </Grid>
       </Container>

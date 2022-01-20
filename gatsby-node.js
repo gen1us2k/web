@@ -3,7 +3,66 @@ const fetch = require('node-fetch')
 const webpack = require('webpack')
 const _ = require('lodash')
 const { createFilePath } = require('gatsby-source-filesystem')
-// const { fmImagesToRelative } = require('gatsby-remark-relative-images')
+
+const controlledBlogTags = require('./src/page-content/content-blog.json').tags
+
+// unfortunately not possible because JS/TS
+// const { slugify } = require('./src/util')
+const slugify = (text) => {
+  return text.toString()
+    .trim()
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, '-')
+}
+
+const createTagPages = (createPage, posts) => {
+  const tagPageTemplate = path.resolve(`src/templates/blog-tag.tsx`)
+
+  const postsByTags = {}
+
+  const processTags = (node) => (arr) => arr
+    .filter(Boolean)
+    .forEach(tagName => {
+      const tagSlug = slugify(tagName)
+      if (!postsByTags[tagSlug]) {
+        postsByTags[tagSlug] = { posts: [], tagName: tagName.trim() }
+      }
+
+      if (postsByTags[tagSlug].posts.find(({id}) => id === node.id)) return;
+
+      postsByTags[tagSlug].posts.push(node)
+    })
+
+  posts.forEach(({node}) => {
+    if (node.frontmatter?.tags) {
+      processTags(node)(node.frontmatter.tags)
+    }
+    if (node.frontmatter?.category) {
+      processTags(node)([node.frontmatter.category])
+    }
+    if (node.frontmatter?.seo?.keywords) {
+      processTags(node)(node.frontmatter.seo.keywords.split(','))
+    }
+  })
+
+  const tags = Object.keys(postsByTags)
+
+  const tagsSet = new Set(tags
+    .concat(controlledBlogTags.map(({ name }) => slugify(name))));
+
+  tagsSet.forEach(tagSlug => {
+    if (!postsByTags[tagSlug]) return;
+
+    createPage({
+      path: `/blog/tag/${tagSlug}`,
+      component: tagPageTemplate,
+      context: {
+        ...(postsByTags[tagSlug] || {}),
+        tagSlug,
+      }
+    })
+  })
+}
 
 const trimLeft = (s, charlist) => {
   if (charlist === undefined) {
@@ -20,6 +79,7 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
       allMdx(filter: { frontmatter: { published: { ne: false } } }) {
         edges {
           node {
+            id
             fileAbsolutePath
             excerpt(pruneLength: 250)
             frontmatter {
@@ -35,6 +95,9 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
               overline
               path
               slug
+              tags
+              category
+              seo { keywords }
             }
           }
         }
@@ -47,6 +110,8 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
     reporter.panicOnBuild(`Error while running GraphQL query: ${result.errors}`)
     return
   }
+
+  createTagPages(createPage, result.data.allMdx.edges)
 
   result.data.allMdx.edges.forEach(({ node }) => {
     let template = path.resolve(`src/templates/page.tsx`)
