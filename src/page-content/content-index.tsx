@@ -61,7 +61,7 @@ export const featureContentCloud: FeatureContentProps = {
   ),
   button: {
     ctaTitle: 'Test now',
-    to: 'https://www.ory.sh/cloud',
+    to: 'https://console.ory.sh/registration',
     iconRight: ArrowRight
   },
   content: (
@@ -156,7 +156,7 @@ export const featureContentUX: FeatureContentProps = {
   ),
   button: {
     ctaTitle: 'Read more',
-    to: 'https://www.ory.sh/docs/',
+    to: 'https://www.ory.sh/docs/guides/bring-your-user-interface',
     iconRight: ArrowRight
   },
   content: (
@@ -222,7 +222,7 @@ export const coding: CodingProps = {
   ),
   button: {
     ctaTitle: 'Visit our documentation',
-    to: '/docs/get-started',
+    to: 'https://www.ory.sh/docs/get-started',
     iconRight: ArrowRight
   },
   additional: {
@@ -235,48 +235,11 @@ export const coding: CodingProps = {
     ),
     button: {
       ctaTitle: 'Install the CLI',
-      to: '/docs/get-started',
+      to: 'https://www.ory.sh/docs/start-building/ory-cli-install-use',
       iconRight: ArrowRight
     }
   },
-  codebox: <CodeBox {...codingCodeBox} />,
-  content: [
-    {
-      icon: Terminal,
-      title: <>Powerful tools</>,
-      description: (
-        <>
-          Ory ships REST APIs, gRPC APIs, SDKs, and CLIs for all operating
-          systems and CPUs.
-        </>
-      ),
-      button: (
-        <Button
-          to={'/docs/guides/ory-cli-install-use'}
-          style={'link'}
-          iconRight={ArrowRight}
-        >
-          Install the CLI
-        </Button>
-      )
-    },
-    {
-      icon: GitMerge,
-      title: <>Based on Open Source</>,
-      description: (
-        <>Participate in discussions, feature requests, and PRs on GitHub.</>
-      ),
-      button: (
-        <Button
-          to={'https://github.com/ory/'}
-          style={'link'}
-          iconRight={ArrowRight}
-        >
-          Star us on GitHub
-        </Button>
-      )
-    }
-  ]
+  codebox: <CodeBox {...codingCodeBox} />
 }
 
 export const quickstart: QuickstartProps = {
