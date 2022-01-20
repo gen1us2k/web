@@ -1,0 +1,79 @@
+backend:
+  name: git-gateway
+  branch: master
+  commit_messages:
+    create: "cms: create “{{slug}}”\n\nin {{collection}}"
+    update: "cms: update “{{slug}}”\n\nin {{collection}}"
+    delete: "cms: delete “{{slug}}”\n\nin {{collection}}"
+    uploadMedia: "cms: upload “{{path}}”\n\n[skip actions]"
+    deleteMedia: "cms: delete “{{path}}”\n\n[skip actions]"
+
+local_backend: true
+media_folder: static/images
+public_folder: /images
+site_url: https://ory.sh
+publish_mode: editorial_workflow
+
+collections:
+  - name: "blog"
+    label: "Blog posts"
+    label_singular: "Blog post"
+    folder: "src/markdown/blog"
+    format: yaml-frontmatter
+    extension: "mdx"
+    slug: "{{path}}"
+    preview_path_date_field: publishedAt
+    summary: "{{publishedAt}} {{title}}"
+
+    create: true
+    publish: false
+    delete: false
+
+    media_folder: 'media'
+    sortable_fields:
+      - "publishedAt"
+      - "author"
+      - "title"
+      - "featuredpost"
+    view_filters:
+      - label: Drafts
+        field: published
+        pattern: false
+    view_groups:
+      - label: Category
+        field: category
+      - label: Year
+        field: publishedAt
+        pattern: \d{4}
+    fields:
+      - {
+          label: "Template Key",
+          name: "templateKey",
+          widget: "hidden",
+          default: "blog",
+        }
+      - { label: "Path", name: "path", widget: "string",  }
+      - { label: "Author", name: "author", widget: "string" }
+      - {
+          label: "Title",
+          name: "title",
+          widget: "string",
+          pattern: ['.{12,}', "Must have at least 12 characters"]
+        }
+      - { label: "Teaser", name: "teaser", widget: "string" }
+      - { label: "Sub-title", name: "subtitle", widget: "string" }
+      - { label: "Over line", name: "overline", widget: "string" }
+      - { label: "Publish Date", name: "publishedAt", widget: "datetime", "date_format": "YYYY-MM-DD", "format": "YYYY-MM-DD" }
+      - {
+          label: "Published",
+          name: "published",
+          widget: "boolean",
+          default: false,
+          required: false,
+          hint: "Will only be visible on /blog if \"on\""
+        }
+      - { label: "Description", name: "description", widget: "text", required: false }
+      - { label: "Featured Post", name: "featuredpost", widget: "boolean", required: false }
+      - { label: "Featured Image", name: "featuredimage", widget: image, required: false }
+      - { label: "Tags", name: "tags", widget: "list" }
+      - { label: "Body", name: "body", widget: "markdown" }

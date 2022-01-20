@@ -1,0 +1,6 @@
+"**/*.*":
+  - zeropaper
+"src/markdown/**/*.mdx":
+  - BlueAcidFrog
+"src/markdown/**/media/**":
+  - BlueAcidFrog

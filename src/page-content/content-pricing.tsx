@@ -30,19 +30,15 @@ export const pricing: Pick<
     {
       notice: (
         <>
-          Upgrade from Developer plan to production plans possible, please{' '}
-          <Button style={'link-inline'} to={'mailto:office@ory.sh'}>
-            contact us
-          </Button>
-          .
-        </>
-      )
-    },
-    {
-      notice: (
-        <>
-          For a limited time the first sign ups to Start Up and Growth plans are
-          free for one year.
+          Fill out the{' '}
+          <Button
+            style={'link-inline'}
+            to={'https://share-eu1.hsforms.com/1KWJxgKzNQWOjR9r5blC41wextgn'}
+          >
+            Ory Acceleration Program Form
+          </Button>{' '}
+          and get access to the Start Up or Growth plan free for one year -
+          program ends March 1st 2022.
         </>
       )
     },

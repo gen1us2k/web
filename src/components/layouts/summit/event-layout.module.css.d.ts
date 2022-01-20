@@ -1,6 +1,6 @@
 declare const styles: {
-  readonly container: string
-  readonly nav: string
-  readonly content: string
-}
-export = styles
+  readonly "container": string;
+  readonly "nav": string;
+};
+export = styles;
+

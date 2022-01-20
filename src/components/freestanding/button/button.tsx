@@ -1,5 +1,5 @@
 import cn from 'classnames'
-import { Link as GatsbyLink } from 'gatsby'
+import GatsbyLink from 'gatsby-link'
 import React from 'react'
 
 import { ParseCase } from '../../../util'

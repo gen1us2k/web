@@ -274,6 +274,12 @@ module.exports = {
     },
     `gatsby-plugin-force-trailing-slashes`,
     {
+      resolve: "gatsby-plugin-netlify-cms",
+      options: {
+        modulePath: `${__dirname}/src/cms/cms.js`,
+      },
+    },
+    {
       resolve: 'gatsby-plugin-matomo',
       options: {
         siteId: '2',
@@ -287,7 +293,7 @@ module.exports = {
         enableJSErrorTracking: true,
         disableCookies: true
       }
-    }
+    },
     // {
     //   resolve: `gatsby-plugin-gdpr-cookies`,
     //   options: {
@@ -312,5 +318,6 @@ module.exports = {
     //     environments: ['production', 'development']
     //   }
     // }
+    "gatsby-plugin-netlify", // make sure to keep it last in the array
   ]
 }

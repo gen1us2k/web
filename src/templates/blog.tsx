@@ -11,9 +11,26 @@ import SEO from '../components/layouts/seo/seo'
 
 import { pb32 } from '../components/freestanding/utils/padding.module.css'
 
-export default function BlogTemplate(props: any) {
-  const { mdx } = props.data // data.mdx holds our post data
-  const { frontmatter: fn, body } = mdx
+export interface PlainBlogTemplateProps {
+  children: React.ReactNode;
+  frontmatter: {
+    seo?: {
+      title?: string;
+      description?: string;
+      keywords?: string;
+      canonical?: string;
+    };
+    overline: string;
+    title: string;
+    subtitle: string;
+    publishedAt: string;
+    author: string;
+    description?: string;
+  };
+}
+
+export function PlainBlogTemplate(props: PlainBlogTemplateProps) {
+  const { children, frontmatter: fn } = props;
   return (
     <Layout>
       <SEO
@@ -30,7 +47,7 @@ export default function BlogTemplate(props: any) {
         subtitle={fn.subtitle}
       />
       <MDXBody padded={false}>
-        <MDXRenderer>{body}</MDXRenderer>
+        {children}
       </MDXBody>
       <Newsletter
         background={'themed'}
@@ -45,6 +62,16 @@ export default function BlogTemplate(props: any) {
         }
       />
     </Layout>
+  )
+}
+
+export default function BlogTemplate(props: any) {
+  const { mdx } = props.data; // data.mdx holds our post data
+  const { body = null, frontmatter = {} } = mdx || {};
+  return (
+    <PlainBlogTemplate frontmatter={frontmatter}>
+      {body && (<MDXRenderer>{body}</MDXRenderer>)}
+    </PlainBlogTemplate>
   )
 }
 

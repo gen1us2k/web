@@ -52,14 +52,7 @@ export const pricingCloud: Pick<PricingProps, 'cloud'> = {
         },
         {
           icon: Check,
-          title: (
-            <>
-              Production Limits apply
-              <span className={cn('is-themed-primary', 'is-semibold')}>
-                <sup> 1</sup>
-              </span>
-            </>
-          )
+          title: <>Production Limits apply</>
         }
       ]
     },
@@ -67,12 +60,12 @@ export const pricingCloud: Pick<PricingProps, 'cloud'> = {
       theme: 'light',
       title: <>Start Up</>,
       description: 'Build your business',
-      price: '21',
+      price: '18',
       priceDescription: (
         <>
-          The first 900 applications get the Start Up plan for free!
+          The first 900 get the Start Up plan one year for free!
           <span className={cn('is-themed-primary', 'is-semibold')}>
-            <sup> 2</sup>
+            <sup> 1</sup>
           </span>
         </>
       ),
@@ -80,8 +73,8 @@ export const pricingCloud: Pick<PricingProps, 'cloud'> = {
       priceIsMonetary: true,
       button: {
         style: 'outlined',
-        title: 'Apply now',
-        to: 'https://form.typeform.com/to/OCuquFBA#plan=start-up'
+        title: 'Request free access',
+        to: 'https://share-eu1.hsforms.com/1KWJxgKzNQWOjR9r5blC41wextgn'
       },
       features: [
         {
@@ -102,7 +95,7 @@ export const pricingCloud: Pick<PricingProps, 'cloud'> = {
             <>
               Fair use policy
               <span className={cn('is-themed-primary', 'is-semibold')}>
-                <sup> 3</sup>
+                <sup>2</sup>
               </span>
             </>
           )
@@ -116,15 +109,15 @@ export const pricingCloud: Pick<PricingProps, 'cloud'> = {
       price: 'Coming soon',
       priceDescription: (
         <>
-          The first 100 applications get the Growth plan for free!
+          The first 100 get the Growth plan one year for free!
           <span className={cn('is-themed-primary', 'is-semibold')}>
-            <sup> 2</sup>
+            <sup> 1</sup>
           </span>
         </>
       ),
       button: {
         title: 'Apply now',
-        to: 'https://form.typeform.com/to/OCuquFBA#plan=growth',
+        to: 'https://share-eu1.hsforms.com/10iDKMSYNQ7eABY-CtnQPtAextgn',
         style: 'outlined'
       },
       features: [

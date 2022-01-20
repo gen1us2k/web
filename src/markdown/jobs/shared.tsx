@@ -7,33 +7,30 @@ export const About = () => (
       are too many profiles, registration screens, passwords, privacy
       violations, data leaks, phishing attacks, and data mining operations out
       there. Our vision is to make the internet more secure and private with
-      better software, open-source, and open knowledge.
+      better software, open-source, and open knowledge. Ory is the largest
+      open-source authentication and authorization (login, registration, MFA,
+      permissions, OAuth2,...) ecosystem and community in the world. We develop
+      open-source software and use it to build a scalable, easy-to-use, and
+      secure cloud platform.
     </p>
   </>
 )
 
-export const Dev = () => (
+export const DeveloperGeneric = () => (
   <>
     <p>
-      Ory is the largest open-source authentication and authorization (login,
-      registration, MFA, permissions, OAuth2, ...) ecosystem and community in
-      the world. We develop open-source software and use it to build a scalable,
-      easy-to-use, and secure cloud platform. You will work on one of the
-      industry's most important code-bases, having a positive impact on hundreds
-      of millions of people worldwide.
+      You will work on one of the industry's most important code-bases, having a
+      positive impact on hundreds of millions of people worldwide.
     </p>
   </>
 )
 
-export const Sales = () => (
+export const SalesGeneric = () => (
   <>
     <p>
-      Ory is the largest open-source authentication and authorization (login,
-      registration, MFA, permissions, OAuth2, ...) ecosystem and community in
-      the world. We develop open-source software and use it to build a scalable,
-      easy-to-use, and secure cloud platform. You will talk to customers to
-      understand their biggest problems and tailor solutions to solve them,
-      having a positive impact on hundreds of millions of people worldwide.
+      You will talk to customers to understand their biggest problems and tailor
+      solutions to solve them, having a positive impact on hundreds of millions
+      of people worldwide.
     </p>
   </>
 )

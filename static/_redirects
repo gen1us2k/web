@@ -266,3 +266,8 @@ https://www.ory.sh/install.sh https://raw.githubusercontent.com/ory/meta/master/
 # Nov 2021 Ory Cloud Docs Reorder
 
 https://www.ory.sh/docs/early-access/ https://www.ory.sh/docs/cloud/cloud-roadmap 302!
+
+# Ory Cloud Redirects
+# These redirects are URL shorthands returned by Ory Cloud APIs. They are used
+# by users to look up more information about the issue.
+https://www.ory.sh/dr/1 https://www.ory.sh/docs/debug/smtp-courier-1 302!

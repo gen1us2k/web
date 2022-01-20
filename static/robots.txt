@@ -1,0 +1,11 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://www.ory.sh/sitemap/sitemap-index.xml
+
+Sitemap: https://www.ory.sh/docs/sitemap.xml
+
+Sitemap: https://www.ory.sh/docs/hydra/sitemap.xml
+Sitemap: https://www.ory.sh/docs/kratos/sitemap.xml
+Sitemap: https://www.ory.sh/docs/keto/sitemap.xml
+Sitemap: https://www.ory.sh/docs/oathkeeper/sitemap.xml
