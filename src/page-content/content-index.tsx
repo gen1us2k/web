@@ -69,7 +69,7 @@ export const featureContentCloud: FeatureContentProps = {
       loading="lazy"
       className="responsive"
       alt="Ory Open Source Ecosystem Illustration"
-      src="../images/illustrations/examplelogin.png"
+      src="../images/illustrations/support.svg"
     />
   )
 }
@@ -100,7 +100,7 @@ export const featureContentLogin: FeatureContentProps = {
       loading="lazy"
       className="responsive"
       alt="Ory Open Source Ecosystem Illustration"
-      src="../images/illustrations/examplelogin.png"
+      src="../images/illustrations/integration.svg"
     />
   ),
   feature: {
