@@ -77,8 +77,15 @@ collections:
           required: false,
           hint: "Will only be visible on /blog if \"on\""
         }
-      - { label: "Description", name: "description", widget: "text", required: false }
-      - { label: "Featured Post", name: "featuredpost", widget: "boolean", required: false }
+      - label: "SEO"
+        name: "seo"
+        widget: "object"
+        collapsed: true
+        fields: 
+          - { label: "Title", name: "title", widget: "string", required: false }
+          - { label: "Canonical", name: "canonical", widget: "string", required: false }
+          - { label: "Description", name: "description", widget: "text", required: false }
+      # - { label: "Featured Post", name: "featuredpost", widget: "boolean", required: false }
       - { label: "Featured Image", name: "featuredimage", widget: image, required: false }
       - { label: "Tags", name: "tags", widget: "list" }
       - { label: "Body", name: "body", widget: "markdown" }
