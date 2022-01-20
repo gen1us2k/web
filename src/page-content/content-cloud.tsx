@@ -8,9 +8,11 @@ import CodeBox, {
 } from '../components/freestanding/codebox/codebox'
 import { PropTypes as CodingProps } from '../components/layouts/coding/coding'
 import { PropTypes as FeatureContentProps } from '../components/layouts/feature-content/feature-content'
-import { PropTypes as HeroProps } from '../components/layouts/hero/hero'
+import { PropTypes as ProjectListProps } from '../components/layouts/projects/projects-list'
 import { PropTypes as QuickstartProps } from '../components/layouts/quickstart/quickstart'
 import { PropTypes as SeoProps } from '../components/layouts/seo/seo'
+import {PropTypes as HeroImageProps} from "../components/layouts/hero/hero-image";
+import Cloud from "../images/illustrations/hero.png";
 
 const ArrowRight = <i className="ph-arrow-right-bold size16" />
 const Terminal = <i className="ph-terminal-fill size32" />
@@ -24,24 +26,81 @@ export const seo: SeoProps = {
     'authentication, open source, login, authorization, security, session management, Json web tokens, access control, OAuth2.0 server, identity server, AuthN, AuthZ'
 }
 
-export const hero: HeroProps = {
+export const hero_alt: HeroImageProps = {
   id: 'cloud.hero',
   title: (
     <>
-      <span className={'is-themed-primary'}>Cloud native </span> identity
+      <span className={'is-themed-primary'}> Cloud native </span> identity
+    </>
+  ),
+  description:<>
+    Integrate modern identity services with Ory Cloud. Batteries included.
+    <span className={'is-themed-primary'}> Based on Ory Open Source. </span></>,
+  buttons: [
+    {
+      ctaTitle: 'Test Now',
+      style: 'filled',
+      to: 'https://console.ory.sh/'
+    }
+  ],
+  image: (
+    <img
+      className="responsive"
+      loading="lazy"
+      alt="Examples of scalable Ory Cloud capabilities and dashboard metrics"
+      src={Cloud}
+    />
+  )
+}
+
+export const projectListCloud: ProjectListProps = {
+  id: 'cloud.projects',
+  title: (
+    <>
+      <span className={'is-mute-text'}>Fully flexible, </span>fully yours
     </>
   ),
   description: (
     <>
-      Integrate modern identity services with Ory Cloud. Batteries included.
-      <span className={'is-themed-primary'}> Based on Ory Open Source. </span>
+      Ory Cloud works on any scale and stack and provides SDKs for any programming language.
     </>
   ),
-  buttons: [
+  projects: [
     {
-      ctaTitle: 'Start Building.',
-      style: 'filled',
-      to: 'https://console.ory.sh/registration'
+      theme: 'kratos',
+      title: 'kratos',
+      overline: 'Powered by Ory Kratos',
+      descriptiveTitle: 'Identity and User Management',
+      description:
+        'Cloud native user management system. Provision IDs, store user information, configure authentication methods and use a headless API.',
+      path: '/kratos',
+    },
+    {
+      theme: 'hydra',
+      title: 'hydra',
+      overline: 'Coming to Ory Cloud',
+      descriptiveTitle: 'OAuth 2.0 and OpenID Connect',
+      description:
+        'OAuth 2.0 and OpenID Certified® OpenID Connect server. Cloud native, security-first, headless API security for your infrastructure. ',
+      path: '/hydra',
+    },
+    {
+      theme: 'oathkeeper',
+      title: 'oathkeeper',
+      overline: 'Coming to Ory Cloud',
+      descriptiveTitle: 'Identity and Access Proxy',
+      description:
+        'Identity and Access Proxy (IAP). Authenticate, authorize and mutate any incoming traffic, using Zero Trust / BeyondCorp as open source.',
+      path: '/oathkeeper',
+    },
+    {
+      theme: 'keto',
+      title: 'keto',
+      overline: 'Coming to Ory Cloud',
+      descriptiveTitle: 'Global access control',
+      description:
+        "Authorization Server inspired by Google's consistent, global Authorization System, providing granular access policies with RBAC, ABAC and ACL.",
+      path: '/keto',
     }
   ]
 }
@@ -50,22 +109,20 @@ export const featureContentCloud: FeatureContentProps = {
   id: 'cloud.featurecontent.cloud',
   slant: true,
   background: 'grey',
-  overline: <>Ory Cloud</>,
+  overline: <>Gotta go fast</>,
   title: (
     <>
-      <span className={'is-mute-text'}>Fast, scalabe,</span>
+      <span className={'is-mute-text'}>Fast, scalable,</span>
       {''} secure
     </>
   ),
   description: (
     <>
-      Authenticate and manage user onboarding flows and identities, protect your
-      APIs, applications, and data - through the command line or an intuitive
-      console.
+      Moving to a new infrastructure is a complicated scenario for any business, with Ory Cloud it is just another Tuesday.
     </>
   ),
   button: {
-    ctaTitle: 'Start Building. No Credit Card required.',
+    ctaTitle: 'Jump right into it',
     to: 'https://console.ory.sh/registration',
     iconRight: ArrowRight
   },
@@ -81,8 +138,7 @@ export const featureContentCloud: FeatureContentProps = {
     title: <>Painless integration</>,
     description: (
       <>
-        Forget setting up Kubernetes, Ingress, routing, and CI/CD. Connect your
-        APIs and frontend and let Ory Cloud handle the heavy lifting.
+        Forget setting up Kubernetes, Ingress, routing and CI/CD. Connect your APIs and frontend and let Ory Cloud handle the heavy lifting.
       </>
     ),
     features: [
@@ -90,8 +146,8 @@ export const featureContentCloud: FeatureContentProps = {
         title: <>Built for developers</>,
         description: (
           <>
-            We built the API and console we wished we had - make setting up
-            identity infrastructure fast and painless.
+            We built the API and console we wished we had - set up
+            secure infrastructure without effort.
           </>
         )
       },
@@ -99,7 +155,7 @@ export const featureContentCloud: FeatureContentProps = {
         title: <>Open source</>,
         description: (
           <>
-            Ory Cloud is based on{' '}
+            Ory Cloud is based on {' '}
             <Button to={'/open-source'} style={'link-inline'}>
               open source
             </Button>{' '}
@@ -111,11 +167,9 @@ export const featureContentCloud: FeatureContentProps = {
         title: <>Fair pricing</>,
         description: (
           <>
-            No limits on identities are part of all{' '}
-            <Button to={'/pricing'} style={'link-inline'}>
-              paid plans
-            </Button>{' '}
-            - pay for what you use.
+            No limits on identities are part of all paid plans
+            {' '}
+            - <Button to={'/pricing'} style={'link-inline'}>you dont get charged per MAU.</Button>
           </>
         )
       },
@@ -124,7 +178,7 @@ export const featureContentCloud: FeatureContentProps = {
         description: (
           <>
             Essential security included, dont pay extra for vital security
-            features like MFA.
+            features like MFA. 
           </>
         )
       }
