@@ -3,6 +3,7 @@ import cn from 'classnames';
 import { getSrcSet } from "gatsby-plugin-image"
 
 import Container from '../../freestanding/containers/container'
+import { AuthorName } from './blog-author'
 import Button from '../../freestanding/button/button';
 import * as styles from './blog-featured.module.css';
 import type { BlogPostNode } from './blog-list';
@@ -53,11 +54,13 @@ const Base = ({
       <h3 className={cn(styles.title, 'font-h2')}>{title}</h3>
 
       <div className={styles.meta}>
-        <div className={styles.metaAuthor}>
-          <span className={styles.metaAuthorName}>{author}</span>
-          -
-          <span className={styles.metaAuthorDate}>{publishedAt}</span>
-        </div>
+        <p className={cn('font-p-smaller')}>
+          <AuthorName
+            className={cn('font-p-smaller')}
+            name={author || ''}
+          />{' '}
+          - {publishedAt}
+        </p>
       </div>
 
       <div className={styles.teaser}>{teaser}</div>

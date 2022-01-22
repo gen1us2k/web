@@ -2,6 +2,7 @@ declare const styles: {
   readonly "root": string;
   readonly "side": string;
   readonly "article": string;
+  readonly "svgDeco": string;
   readonly "big": string;
   readonly "image": string;
   readonly "title": string;
@@ -13,7 +14,6 @@ declare const styles: {
   readonly "overline": string;
   readonly "readMore": string;
   readonly "readMoreButton": string;
-  readonly "svgDeco": string;
 };
 export = styles;
 
