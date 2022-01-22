@@ -68,8 +68,9 @@ collections:
               - { label: "Title", name: "title", widget: "string", required: false }
               - { label: "Description", name: "description", widget: "text", required: false }
           - name: tags
-            label: Tags
-            label_singular: Tag
+            label: Promoted tags
+            label_singular: Promoted tag
+            hint: Control which tags / categories appear on the blog
             widget: list
             fields:
               - name: name
@@ -79,16 +80,6 @@ collections:
                 label: Description
                 widget: text
                 required: false
-              - label: Featured
-                name: featured
-                widget: relation
-                collection: blog
-                value_field: path
-                search_fields:
-                  - path
-                  - title
-                display_fields:
-                  - title
   - name: "blog"
     label: "Blog posts"
     label_singular: "Blog post"
@@ -129,14 +120,15 @@ collections:
       - {
           label: "Tags",
           name: "tags",
-          # widget: "list"
-          widget: "relation",
-          collection: "configuration",
-          display_field: "name",
-          value_field: "name",
-          search_fields: ['*'],
-          file: "src/page-content/blog-tags.json",
-          multiple: true
+          widget: "list"
+          # TODO: relation would be much better in terms of UX
+          # widget: "relation",
+          # collection: "configuration",
+          # display_field: "name",
+          # value_field: "name",
+          # search_fields: ['*'],
+          # file: "src/page-content/blog-tags.json",
+          # multiple: true
         }
       - {
           label: "Path",

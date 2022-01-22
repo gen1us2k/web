@@ -6,6 +6,7 @@ import Layout from '../components/layouts/layout/layout'
 import SEO from '../components/layouts/seo/seo'
 import content from '../page-content/content-blog.json'
 import FeaturedBlogPosts from '../components/layouts/blog/blog-featured'
+import BlogTags, { slugify } from '../components/layouts/blog/blog-tags'
 
 const BlogTagPage = ({
   pageContext: {
@@ -78,8 +79,11 @@ const BlogTagPage = ({
         bottom={getFeatured('bottom')}
       />
 
-      {featured?.frontmatter?.featuredimage && <BlogFeatured {...featured} />}
-    
+      <BlogTags
+        currentSlug={tagSlug}
+        tags={content.tags.map(({ name }) => ({ name, slug: slugify(name) }))}
+      />
+
       <BlogList
         id={`blog.${tagName}.list`}
         title={tagName}

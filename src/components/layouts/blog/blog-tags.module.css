@@ -1,22 +1,26 @@
 .root {
-  margin-top: 2rem;
+  margin-top: var(--space-small);
 }
 
 .list {
   display: flex;
   flex-direction: row;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
   flex-wrap: wrap;
   list-style: none;
   padding: 0;
-  margin: 0;
+  margin: 0 calc(-1 * var(--size-2));
 }
 
 .item {
   list-style: none;
   padding: var(--size-1) var(--size-2);
   margin: 0;
+}
+
+.active {
+  background-color: chartreuse;
 }
 
 .link {}

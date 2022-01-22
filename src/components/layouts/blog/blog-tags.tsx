@@ -1,12 +1,14 @@
 import React from 'react';
 import { Link } from 'gatsby';
+import cn from 'classnames';
 
 import * as styles from './blog-tags.module.css'
 import Container from '../../freestanding/containers/container';
 
-interface BlogTagsProps {
+interface PropTypes {
   tags: ReturnType<typeof normalizeTags>;
   showCount?: boolean;
+  currentSlug?: string;
 }
 
 export interface QueryTag {
@@ -99,10 +101,11 @@ export const normalizeTags = (raw: QueryTag[]): Tag[] => {
   }, [] as Tag[]);
 }
 
-export default ({
+const BlogTags = ({
   tags,
   showCount,
-}: BlogTagsProps) => {
+  currentSlug,
+}: PropTypes) => {
   return (
     <Container
       component="nav"
@@ -110,24 +113,40 @@ export default ({
       justify="center"
       alignItems="center"
       className={styles.root}
+      id="blog-tags"
     >
       <ul className={styles.list}>
-        {sortByCount(tags).map(({
+        {[
+          { slug: '..', name: 'All', ids: [] },
+          ...sortByCount(tags)
+        ].map(({
           slug, name, ids: { length: count } = []
-        }) => (<li key={slug} className={styles.item}>
-          <Link to={`/blog/tag/${slug}`}  className={styles.link}>
-            <span  className={styles.name}>
-              {name}
-            </span>
-            <>{showCount && (
-              <>
-                {' '}
-                <span className={styles.count}>{count}</span>
-              </>
-            )}</>
-          </Link>
-        </li>))}
+        }) => (
+          <li
+            key={slug}
+            className={cn(styles.item, {
+              [styles.active]: slug === currentSlug
+            })}
+          >
+            <Link
+              to={`/blog/tag/${slug}#blog-tags`}
+              className={styles.link}
+            >
+              <span  className={styles.name}>
+                {name}
+              </span>
+              <>{showCount && (
+                <>
+                  {' '}
+                  <span className={styles.count}>{count}</span>
+                </>
+              )}</>
+            </Link>
+          </li>
+        ))}
       </ul>
     </Container>
   );
-};
+}
+
+export default BlogTags
