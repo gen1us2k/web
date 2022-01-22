@@ -32,6 +32,11 @@ const Base = ({
         [styles.big]: big,
       })}
     >
+      <svg className={styles.svgDeco} width="108" height="48" viewBox="0 0 108 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M54 -2.36041e-06L108 25.732L108 48L54 22.268L0 48L-9.73367e-07 25.732L54 -2.36041e-06Z"/>
+        <path d="M54 48L-8.60276e-06 22.268L-7.62939e-06 -4.72083e-06L54 25.732L108 0L108 22.268L54 48Z"/>
+      </svg>
+
       {big && image && (
         <img
           alt="Illustration"

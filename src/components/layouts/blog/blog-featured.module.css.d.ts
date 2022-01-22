@@ -13,6 +13,7 @@ declare const styles: {
   readonly "overline": string;
   readonly "readMore": string;
   readonly "readMoreButton": string;
+  readonly "svgDeco": string;
 };
 export = styles;
 

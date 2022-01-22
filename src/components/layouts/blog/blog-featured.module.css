@@ -18,16 +18,41 @@
 
   display: flex;
   flex-direction: column;
-  
+  position: relative;
+}
+
+.svgDeco {
+  fill: var(--colors-themed-primary);
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  z-index: 0;
+  width: 100%;
+  height: auto;
+}
+
+.svgDeco path {
+  opacity: 0.05;
+}
+
+.svgDeco path:first-child {
+  opacity: 0.1;
 }
 
 .big {
   flex-grow: 1;
   max-width: calc(50% - var(--size-6));
+  justify-content: flex-end;
 }
 
 .image {
   margin-bottom: var(--size-8);
+}
+
+.big .image {
+  align-self: flex-start;
 }
 
 .title {
@@ -36,6 +61,10 @@
 
 .teaser {
   flex-grow: 1;
+}
+
+.big .teaser {
+  flex-grow: 0;
 }
 
 .meta {
@@ -76,7 +105,7 @@
 
 }
 
-@media (min-width: 600px) and (max-width: 959px) {
+@media (--xs), (--sm) {
   .root {
     flex-direction: column;
   }
