@@ -7,6 +7,7 @@ import SEO from '../components/layouts/seo/seo'
 import content from '../page-content/content-blog.json'
 import FeaturedBlogPosts from '../components/layouts/blog/blog-featured'
 import BlogTags, { slugify } from '../components/layouts/blog/blog-tags'
+import Newsletter from '../components/layouts/newsletter/newsletter'
 
 const BlogTagPage = ({
   pageContext: {
@@ -89,6 +90,8 @@ const BlogTagPage = ({
         title={tagName}
         posts={posts}
       />
+
+      <Newsletter />
     </Layout>
   );
 }

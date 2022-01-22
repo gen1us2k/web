@@ -7,6 +7,7 @@ import SEO from '../components/layouts/seo/seo'
 import content from '../page-content/content-blog.json'
 import FeaturedBlogPosts from '../components/layouts/blog/blog-featured'
 import BlogTags, { slugify } from '../components/layouts/blog/blog-tags'
+import Newsletter from '../components/layouts/newsletter/newsletter'
 
 const BlogPage = () => {
   const blogPosts = useStaticQuery(graphql`
@@ -71,6 +72,8 @@ const BlogPage = () => {
         title={content.title}
         posts={blogPosts.allMdx.edges.map(({ node }: { node: BlogPostNode }) => node)}
       />
+
+      <Newsletter />
     </Layout>
   );
 }
