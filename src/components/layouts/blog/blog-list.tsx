@@ -26,13 +26,13 @@ export type BlogPostNode = {
   excerpt: string
   frontmatter: {
     publishedAt: string
-    author: string
-    path: string
-    title: string
-    teaser: string
-    overline: string
-    subtitle: string
-    tags?: string[]
+    author: string | null
+    path: string | null
+    title: string | null
+    teaser: string | null
+    overline: string | null
+    subtitle: string | null
+    tags?: string[] | null
     featuredimage?: {
       childImageSharp: {
         gatsbyImageData: any;
@@ -55,7 +55,7 @@ export const BlogListItem = ({ node }: { node: BlogPostNode }) => (
     xs={12}
     className={cn(styles.blogItem, styles.itemFlex)}
   >
-    <Button style={'none'} to={node.frontmatter.path}>
+    <Button style={'none'} to={node.frontmatter.path || ''}>
       <Container
         justify={'space-between'}
         alignItems={'stretch'}
@@ -79,7 +79,7 @@ export const BlogListItem = ({ node }: { node: BlogPostNode }) => (
           <p className={cn('font-p-smaller')}>
             <AuthorName
               className={cn('font-p-smaller')}
-              name={node.frontmatter.author}
+              name={node.frontmatter.author || ''}
             />{' '}
             - {node.frontmatter.publishedAt}
           </p>

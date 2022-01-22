@@ -55,7 +55,11 @@
       "name": "Audit Logs"
     }
   ],
-  "featured": "/ghost-post/",
+  "featured": {
+    "big": "/choose-recommended-argon2-parameters-password-hashing/",
+    "top": "/cloud-ecommerce-frontend/",
+    "bottom": "/looking-at-keto/"
+  },
   "seo": {
     "title": "Ory Developer Blog and Articles",
     "description": "Read articles and blog posts from Ory core contributors and maintainers."

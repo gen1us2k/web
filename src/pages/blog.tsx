@@ -5,7 +5,7 @@ import BlogList, { BlogPostNode } from '../components/layouts/blog/blog-list'
 import Layout from '../components/layouts/layout/layout'
 import SEO from '../components/layouts/seo/seo'
 import content from '../page-content/content-blog.json'
-import BlogFeatured from '../components/layouts/blog/blog-featured'
+import FeaturedBlogPosts from '../components/layouts/blog/blog-featured'
 import BlogTags, { slugify } from '../components/layouts/blog/blog-tags'
 
 const BlogPage = () => {
@@ -49,15 +49,18 @@ const BlogPage = () => {
   }
   `)
 
-  const featured = (blogPosts?.allMdx?.edges || []).find(({
+  const getFeatured = (wanted: keyof typeof content.featured) => (blogPosts?.allMdx?.edges || []).find(({
     node: { frontmatter: { path = null } = {} } = {}
-  }: any) => path === content.featured)
-
+  }: any) => path === content.featured[wanted])?.node
   return (
     <Layout>
       <SEO {...content.seo} />
 
-      {featured?.node?.frontmatter?.featuredimage && <BlogFeatured {...featured.node} />}
+      <FeaturedBlogPosts
+        big={getFeatured('big')}
+        top={getFeatured('top')}
+        bottom={getFeatured('bottom')}
+      />
 
       <BlogTags
         tags={content.tags.map(({ name }) => ({ name, slug: slugify(name) }))}

@@ -25,16 +25,41 @@ collections:
         name: "blog"
         file: "src/page-content/content-blog.json"
         fields:
-          - label: Featured
-            name: featured
-            widget: relation
-            collection: blog
-            value_field: path
-            search_fields:
-              - path
-              - title
-            display_fields:
-              - title
+          - label: "Featured"
+            name: "featured"
+            hint: Control which blog posts are featured on the blog
+            widget: "object"
+            fields:
+              - label: Big
+                name: big
+                widget: relation
+                collection: blog
+                value_field: path
+                search_fields:
+                  - path
+                  - title
+                display_fields:
+                  - title
+              - label: Top
+                name: top
+                widget: relation
+                collection: blog
+                value_field: path
+                search_fields:
+                  - path
+                  - title
+                display_fields:
+                  - title
+              - label: Bottom
+                name: bottom
+                widget: relation
+                collection: blog
+                value_field: path
+                search_fields:
+                  - path
+                  - title
+                display_fields:
+                  - title
           - label: "SEO"
             name: "seo"
             widget: "object"
