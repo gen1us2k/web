@@ -28,22 +28,16 @@ export const hero: HeroProps = {
   id: 'index.hero',
   title: (
     <>
-      <span className={'is-themed-primary'}>Cloud native </span> identity
+      <span className={'is-themed-primary'}>Limitless</span> identities
     </>
   ),
   description:
-    'Ory is the only identity platform that can scale indefinitely and is based entirely on open source.',
-
+    'Ory provides free and open identity infrastructure, securing millions of users worldwide.',
   buttons: [
     {
-      ctaTitle: 'Start Building',
+      ctaTitle: 'Try Ory Cloud free',
       style: 'filled',
-      to: 'https://console.ory.sh/registration'
-    },
-    {
-      ctaTitle: 'Contact',
-      style: 'outlined',
-      to: 'mailto:office@ory.sh'
+      to: '/cloud'
     }
   ]
 }
@@ -52,38 +46,39 @@ export const featureContentCloud: FeatureContentProps = {
   id: 'index.featurecontent.cloud',
   slant: true,
   background: 'grey',
-  overline: <>Ory Cloud</>,
+  overline: <>The future of identity</>,
   title: (
     <>
-      <span className={'is-mute-text'}>Powerful,</span>
-      {''} elegant
+      <span className={'is-mute-text'}>Never build authentication</span>
+      {''} again
     </>
   ),
   description: (
     <>
-      Authenticate and manage users, set and check permissions, protect your
-      APIs, applications, and data - all inside an intuitive console.
+      Ory provides adaptable services and APIs for authentication,
+      authorization, access control, OAuth2.0, Zero Trust.
     </>
   ),
   button: {
-    ctaTitle: 'Sign up',
-    to: 'https://console.ory.sh',
+    ctaTitle: 'Learn more',
+    to: 'https://www.ory.sh/docs/',
     iconRight: ArrowRight
   },
   content: (
     <StaticImage
       loading="lazy"
       className="responsive"
-      alt="Ory Project Dashboard"
-      src="../images/illustrations/dashboard.png"
+      alt="Ory Open Source Ecosystem Illustration"
+      src="../images/illustrations/examplelogin.png"
     />
   ),
   feature: {
-    title: <>Built for developers</>,
+    title: <>Open Source</>,
     description: (
       <>
-        We built the console we wished we had - it's packed with features that
-        make setting up identity infrastructure fast and painless.
+        Ory has an open source architecture, attitude, and heart. We strive to
+        allow everyone, regardless of economic background, to build a better
+        world with software.
       </>
     ),
     features: [
@@ -92,47 +87,26 @@ export const featureContentCloud: FeatureContentProps = {
         description: (
           <>
             MFA, permissions and roles, custom branding and flows, OAuth 2.0,
-            OIDC, IAP, RBAC, integrations{' '}
+            OIDC, IAP, RBAC, integrations and{' '}
             <Button
               to={'https://www.ory.sh/docs/ecosystem/projects'}
               style={'link-inline'}
             >
-              and more
-            </Button>
+               more
+            </Button>{' '}
             .
           </>
         )
       },
       {
-        title: <>Open source</>,
+        title: <>Developer focused</>,
         description: (
           <>
-            Ory Cloud is based on{' '}
+            Ory is based on{' '}
             <Button to={'/open-source'} style={'link-inline'}>
               open source
             </Button>{' '}
             software and grows with every community member and pull-request.
-          </>
-        )
-      },
-      {
-        title: <>Transparency</>,
-        description: (
-          <>
-            No limits on identities are part of all{' '}
-            <Button to={'/pricing'} style={'link-inline'}>
-              paid plans
-            </Button>{' '}
-            - pay for what you use.
-          </>
-        )
-      },
-      {
-        title: <>No lock in</>,
-        description: (
-          <>
-            Migration to and from Ory Cloud is simple "on the roadmap". No
-            lock-in on vital systems.
           </>
         )
       }

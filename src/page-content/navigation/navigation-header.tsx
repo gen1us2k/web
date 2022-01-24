@@ -25,12 +25,12 @@ export const sideNav: Pick<NavProps, 'sideNav'> = {
 export const dropdownMenu: Pick<NavProps, 'dropdownMenu'> = {
   dropdownMenu: [
     {
-      title: 'Ory Cloud',
+      title: 'Products',
       mainMenu: [
         {
-          title: 'Try Free',
-          description: 'No Credit Card required',
-          to: 'https://console.ory.sh/registration'
+          title: 'Ory Cloud',
+          description: 'Start Free, No Credit Card required',
+          to: '/cloud'
         },
         {
           title: 'Pricing',
@@ -40,36 +40,36 @@ export const dropdownMenu: Pick<NavProps, 'dropdownMenu'> = {
       ]
     },
     {
-      title: 'Ory Open Source',
+      title: 'Solutions',
       mainMenu: [
         {
-          title: 'Overview',
-          description: "Ory's heart is Open Source",
+          title: 'Ory Open Source',
+          description: "Ory builds free and open software",
           to: '/open-source'
         },
         {
-          title: 'Kratos',
-          description: 'Identity & User Management',
+          title: 'Identity & User Management',
+          description: 'Ory Kratos',
           to: '/kratos'
         },
         {
-          title: 'Hydra',
-          description: 'OAuth 2.0 & OpenIDConnect',
+          title: 'OAuth 2.0 & OpenIDConnect',
+          description: 'Ory Hydra',
           to: '/hydra'
         },
         {
-          title: 'Keto',
-          description: 'Global Authorization Server',
+          title: 'Global Authorization Server',
+          description: 'Ory Keto',
           to: '/keto'
         },
         {
-          title: 'Oathkeeper',
-          description: 'Zero Trust Networking',
+          title: 'Zero Trust Networking',
+          description: 'Ory Oathkeeper',
           to: '/oathkeeper'
         },
         {
-          title: 'GitHub',
-          description: 'Participate in Development',
+          title: 'Community Driven Development',
+          description: 'GitHub',
           to: 'https://github.com/ory',
           openInNewWindow: true
         }
@@ -89,18 +89,18 @@ export const dropdownMenu: Pick<NavProps, 'dropdownMenu'> = {
           to: '/community'
         },
         {
-          title: 'Blog',
-          description: 'Articles & Guides',
+          title: 'Articles & Guides',
+          description: 'Ory Developer Blog',
           to: '/blog'
         },
         {
           title: 'NextJS',
-          description: 'Add Auth to React Apps',
+          description: 'Painless Authentication for React',
           to: '/nextjs'
         },
         {
-          title: 'Summit',
-          description: 'Watch VODs of the Ory Summit',
+          title: 'Talks & Presentations',
+          description: 'Watch VODs of Ory Summit 21',
           to: '/summit/2021'
         }
       ]
@@ -137,10 +137,10 @@ export const mobileMenu: Pick<NavProps, 'mobileMenu'> = {
   mobileMenu: {
     mobileMenuCategories: [
       {
-        category: 'Ory Cloud',
+        category: 'Products',
         mobileMenuItems: [
           {
-            title: 'Sign Up',
+            title: 'Ory Cloud',
             to: 'https://console.ory.sh/registration'
           },
           {
@@ -150,26 +150,26 @@ export const mobileMenu: Pick<NavProps, 'mobileMenu'> = {
         ]
       },
       {
-        category: 'Ory Open Source',
+        category: 'Solutions',
         mobileMenuItems: [
           {
-            title: 'Overview',
+            title: 'Ory is Open Source',
             to: '/open-source'
           },
           {
-            title: 'Kratos',
+            title: 'Identity & User Management',
             to: '/kratos'
           },
           {
-            title: 'Hydra',
+            title: 'OAuth 2.0 & OpenIDConnect',
             to: '/hydra'
           },
           {
-            title: 'Keto',
+            title: 'Global Authorization Server',
             to: '/keto'
           },
           {
-            title: 'Oathkeeper',
+            title: 'Zero Trust Networking',
             to: '/oathkeeper'
           },
           {
@@ -191,11 +191,11 @@ export const mobileMenu: Pick<NavProps, 'mobileMenu'> = {
             to: '/community/'
           },
           {
-            title: 'Blog',
+            title: 'Guides & Articles',
             to: '/blog/'
           },
           {
-            title: 'Summit',
+            title: 'Talks & Presentations',
             to: '/summit/2021'
           }
         ]

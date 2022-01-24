@@ -58,10 +58,10 @@ export const legal: Pick<FooterPropTypes, 'legal'> = {
 export const links: Pick<FooterPropTypes, 'category'> = {
   category: [
     {
-      menuCategory: 'Ory Cloud',
+      menuCategory: 'Products',
       menuItems: [
         {
-          title: 'Cloud',
+          title: 'Ory Cloud',
           to: 'https://console.ory.sh/registration',
           openInNewWindow: true
         },
@@ -72,26 +72,26 @@ export const links: Pick<FooterPropTypes, 'category'> = {
       ]
     },
     {
-      menuCategory: 'Ory Open Source',
+      menuCategory: 'Solutions',
       menuItems: [
         {
-          title: 'Overview',
+          title: 'Ory is Open Source',
           to: '/open-source'
         },
         {
-          title: 'Hydra',
-          to: '/hydra'
-        },
-        {
-          title: 'Kratos',
+          title: 'Identity & User Management',
           to: '/kratos'
         },
         {
-          title: 'Keto',
+          title: 'OAuth 2.0 & OpenIDConnect',
+          to: '/hydra'
+        },
+        {
+          title: 'Global Authorization Server',
           to: '/keto'
         },
         {
-          title: 'Oathkeeper',
+          title: 'Zero Trust Networking',
           to: '/oathkeeper'
         }
       ]
@@ -108,7 +108,7 @@ export const links: Pick<FooterPropTypes, 'category'> = {
           to: '/community'
         },
         {
-          title: 'Blog',
+          title: 'Guides & Articles',
           to: '/blog'
         },
         {

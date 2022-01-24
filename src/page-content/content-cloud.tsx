@@ -25,7 +25,7 @@ export const seo: SeoProps = {
 }
 
 export const hero: HeroProps = {
-  id: 'index.hero',
+  id: 'cloud.hero',
   title: (
     <>
       <span className={'is-themed-primary'}>Cloud native </span> identity
@@ -44,7 +44,7 @@ export const hero: HeroProps = {
 }
 
 export const featureContentCloud: FeatureContentProps = {
-  id: 'index.featurecontent.cloud',
+  id: 'cloud.featurecontent.cloud',
   slant: true,
   background: 'grey',
   overline: <>Ory Cloud</>,
@@ -57,7 +57,8 @@ export const featureContentCloud: FeatureContentProps = {
   description: (
     <>
       Authenticate and manage user onboarding flows and identities, protect your
-      APIs, applications, and data - through the command line or an intuitive console.
+      APIs, applications, and data - through the command line or an intuitive
+      console.
     </>
   ),
   button: {
@@ -77,7 +78,8 @@ export const featureContentCloud: FeatureContentProps = {
     title: <>Painless integration</>,
     description: (
       <>
-        Forget setting up Kubernetes, Ingress, routing, and CI/CD. Connect your APIs and frontend and let Ory Cloud handle the heavy lifting.
+        Forget setting up Kubernetes, Ingress, routing, and CI/CD. Connect your
+        APIs and frontend and let Ory Cloud handle the heavy lifting.
       </>
     ),
     features: [
@@ -85,7 +87,8 @@ export const featureContentCloud: FeatureContentProps = {
         title: <>Built for developers</>,
         description: (
           <>
-           We built the API and console we wished we had - make setting up identity infrastructure fast and painless.
+            We built the API and console we wished we had - make setting up
+            identity infrastructure fast and painless.
           </>
         )
       },
@@ -97,7 +100,8 @@ export const featureContentCloud: FeatureContentProps = {
             <Button to={'/open-source'} style={'link-inline'}>
               open source
             </Button>{' '}
-            software and improves daily with every community member and pull-request.
+            software and improves daily with every community member and
+            pull-request.
           </>
         )
       },
@@ -117,7 +121,8 @@ export const featureContentCloud: FeatureContentProps = {
         title: <>Security not optional</>,
         description: (
           <>
-          Essential security included, dont pay extra for vital security features like MFA.
+            Essential security included, dont pay extra for vital security
+            features like MFA.
           </>
         )
       }
@@ -126,19 +131,20 @@ export const featureContentCloud: FeatureContentProps = {
 }
 
 export const featureContentUX: FeatureContentProps = {
-  id: 'index.featurecontent.ux',
+  id: 'cloud.featurecontent.ux',
   slant: true,
   background: 'dark',
   overline: 'Bring your own UI',
   title: (
     <>
-      <span className={'is-mute-text'}>Take back</span>
-      {' '} control
+      <span className={'is-mute-text'}>Take back</span> control
     </>
   ),
   description: (
     <>
-      Ory Cloud is built for maximum adaptability - use your styles and design, identity schemas and UX flows. Ory Cloud is flexible and can be adapted to your needs.
+      Ory Cloud is built for maximum adaptability - use your styles and design,
+      identity schemas and UX flows. Ory Cloud is flexible and can be adapted to
+      your needs.
     </>
   ),
   button: {
@@ -189,7 +195,7 @@ $ ory identities list --project playground
 }
 
 export const coding: CodingProps = {
-  id: 'index.coding',
+  id: 'cloud.coding',
   slant: true,
   background: 'light-grey',
   overline: 'Modern tooling',
@@ -203,7 +209,8 @@ export const coding: CodingProps = {
     <>
       SDKs for any language, clear documentation, tutorials, and community
       support are our standards. Our open source approach also means you get to
-      participate in API and architecture discussions - and influence the roadmap.
+      participate in API and architecture discussions - and influence the
+      roadmap.
     </>
   ),
   button: {
@@ -266,7 +273,7 @@ export const coding: CodingProps = {
 }
 
 export const quickstart: QuickstartProps = {
-  id: 'index.quickstart',
+  id: 'cloud.quickstart',
   background: 'light-grey',
   slant: true,
   title: (
