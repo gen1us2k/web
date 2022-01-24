@@ -11,32 +11,45 @@ published: true
 featuredimage: media/logo-copy.png
 tags: []
 ---
+
+
+A new year starts and we have been making good progress towards Ory Hydra 2.0. 
+This means OAuth2.0 and OIDC APIs will soon be available Ory Cloud. 
+
+
 ## OAuth2.0 service coming to Ory Cloud
 
-We have been making good progress towards Ory Hydra 2.0. While a major version, we intend to keep all APIs with as few breaking changes as possible. The efforts focus on some long-standing issues in the persistence layer. In particular, data growth rate and performance improvements are the focus areas! If you are interested to see what is going on, check out PR [#2796](https://github.com/ory/hydra/pull/2796).
+While Ory Hydra 2.0 is a major version update, there will be a very low number of breaking changes. The update will particularly improve performance and manage data growth rates for huge workloads.  
+For a deep dive into the Ory Hydra 2.0 code visit PR [#2796](https://github.com/ory/hydra/pull/2796).
 
-And Ory Hydra 2.0 will be available as an API in Ory Cloud! If you are interested in Ory Cloud, apply to [Ory Acceleration Program](https://share-eu1.hsforms.com/1KWJxgKzNQWOjR9r5blC41wextgn) and receive a **one-year free subscription for Ory Cloud's Start-Up plan**. The Start-Up plan comes with convenient features such as custom domains and unlimited identities/tokens!
+>How to leverage hardened open source identity infrastructure and keep the workload for developers minimal?   
+>👉 Apply to the [Ory Acceleration Program](https://share-eu1.hsforms.com/1KWJxgKzNQWOjR9r5blC41wextgn) and receive a **one-year free subscription for Ory Cloud's Start-Up plan**.
 
-More on timelines and Ory Hydra 2.0 plans will follow later this year.
-
-### Ory Hydra 1.11.0 released 🎉
+### New Features in Ory Hydra 1.11.0 🎉
 
 A massive release powered by you - the Ory Community .
 
 #### Support for Hardware Security Models
 
-Ory Hydra now supports loading Private and Public Keys from Hardware Security Modules, a physical computing device that safeguards and manages digital keys, performs encryption and decryption functions for digital signatures, strong authentication, and other cryptographic functions. Thank you [@aarmam](https://github.com/aarmam) for this amazing work! For more information, please [read the guide](https://www.ory.sh/hydra/docs/next/guides/hsm-support).
+Ory Hydra now lets you load public and private keys from a Hardware Security Module (HSM). An HSM is a physical computing device that safeguards and manages digital keys, performs encryption and decryption functions for digital signatures, strong authentication, and other cryptographic functions. Thank you [@aarmam](https://github.com/aarmam) for this amazing work! For more information, please [read the guide](https://www.ory.sh/hydra/docs/next/guides/hsm-support).
 
 #### OIDC/OAuth2.0 Dynamic Client Registration
 
-Next up, Ory Hydra now natively supports the OpenID Connect Dynamic Client Registration and OAuth2 Dynamic Client Registration Protocol which can be enabled (optionally) in the configuration! Thank you [@fjvierap](https://github.com/fjvierap) for your hard work!
+Ory Hydra now natively supports the OpenID Connect Dynamic Client Registration and OAuth2 Dynamic Client Registration Protocol. This optional capability can be enabled in the configuration. Thank you [@fjvierap](https://github.com/fjvierap) for your hard work!
 
 #### JWT Profile for OAuth2.0 Grants (RFC7523)
 
-We do not stop there, [@Xopek](https://github.com/Xopek) and [@jagobagascon](https://github.com/jagobagascon) added the Support for JSON Web Token (JWT) Profile for OAuth 2.0 Authorization Grants (RFC7523) to Ory Hydra! This major improvement allows Ory Hydra to have an even better integration API than before!
+
+Ory Hydra now supports an improved integration API for JSON Web Token (JWT) profile for OAuth 2.0 authorization grants. This improved API makes it easier to integrate a variety of devices and applications into Ory Hydra.
+Many thanks to [@Xopek](https://github.com/Xopek) and [@jagobagascon](https://github.com/jagobagascon) for this contribution!
 
 #### Support for ARM64 (Apple M1, FreeBSD, Linux ARM)
 
-For our Apple users and everyone eyeballing ARM64, we now distributed binaries and Docker Images for all platforms and CPU architectures, including Apple M1, Linux ARM (v6, v7, v8, ARM64), and - this is new - FreeBSD!
+We now distribute binaries and Docker images for all platforms and CPU architectures, including Apple M1 (ARMv6), ARMv7, ARMv8, Linux (ARM6, ARM7, ARM8) and a new platform: FreeBSD.
 
 Lastly, we resolved a bug in the configuration loading which now allows loading complex configuration keys from environment variables without hassle!
+
+>Stay informed: Sign up to the [Ory newsletter](https://ory.us10.list-manage.com/subscribe?u=ffb1a878e4ec6c0ed312a3480&id=f605a41b53).
+
+Thanks for reading, sign up the the newsletter and follow us on [Twitter](https://twitter.com/OryCorp) to get the news on the Ory movement as they happen!
+
