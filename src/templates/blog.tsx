@@ -12,25 +12,25 @@ import SEO from '../components/layouts/seo/seo'
 import { pb32 } from '../components/freestanding/utils/padding.module.css'
 
 export interface PlainBlogTemplateProps {
-  children: React.ReactNode;
+  children: React.ReactNode
   frontmatter: {
     seo?: {
-      title?: string;
-      description?: string;
-      keywords?: string;
-      canonical?: string;
-    };
-    overline: string;
-    title: string;
-    subtitle: string;
-    publishedAt: string;
-    author: string;
-    description?: string;
-  };
+      title?: string
+      description?: string
+      keywords?: string
+      canonical?: string
+    }
+    overline: string
+    title: string
+    subtitle: string
+    publishedAt: string
+    author: string
+    description?: string
+  }
 }
 
 export function PlainBlogTemplate(props: PlainBlogTemplateProps) {
-  const { children, frontmatter: fn } = props;
+  const { children, frontmatter: fn } = props
   return (
     <Layout>
       <SEO
@@ -46,9 +46,7 @@ export function PlainBlogTemplate(props: PlainBlogTemplateProps) {
         author={fn.author}
         subtitle={fn.subtitle}
       />
-      <MDXBody padded={false}>
-        {children}
-      </MDXBody>
+      <MDXBody padded={false}>{children}</MDXBody>
       <Newsletter
         background={'themed'}
         special={
@@ -66,11 +64,11 @@ export function PlainBlogTemplate(props: PlainBlogTemplateProps) {
 }
 
 export default function BlogTemplate(props: any) {
-  const { mdx } = props.data; // data.mdx holds our post data
-  const { body = null, frontmatter = {} } = mdx || {};
+  const { mdx } = props.data // data.mdx holds our post data
+  const { body = null, frontmatter = {} } = mdx || {}
   return (
     <PlainBlogTemplate frontmatter={frontmatter}>
-      {body && (<MDXRenderer>{body}</MDXRenderer>)}
+      {body && <MDXRenderer>{body}</MDXRenderer>}
     </PlainBlogTemplate>
   )
 }

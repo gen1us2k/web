@@ -34,7 +34,7 @@ export interface PropTypes {
   smHidden?: boolean
   xsHidden?: boolean
   noWrap?: boolean
-  editMode?: false | true,
+  editMode?: false | true
   component?: string | React.ComponentType<any>
   style?: React.CSSProperties
   id?: string
@@ -98,7 +98,7 @@ const Container = forwardRef(
       noWrap = false,
       component: Component = 'div',
       style,
-      id,
+      id
     }: PropTypes,
     ref: any
   ) => (

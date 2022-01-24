@@ -1,14 +1,15 @@
-import React from 'react';
-import { Link } from 'gatsby';
-import cn from 'classnames';
+import cn from 'classnames'
+import { Link } from 'gatsby'
+import React from 'react'
+
+import Container from '../../freestanding/containers/container'
 
 import * as styles from './blog-tags.module.css'
-import Container from '../../freestanding/containers/container';
 
 interface PropTypes {
-  tags: ReturnType<typeof normalizeTags>;
-  showCount?: boolean;
-  currentSlug?: string;
+  tags: ReturnType<typeof normalizeTags>
+  showCount?: boolean
+  currentSlug?: string
 }
 
 export interface QueryTag {
@@ -31,14 +32,15 @@ export interface Tag {
 }
 
 export const slugify = (text: string) => {
-  return text.toString()
+  return text
+    .toString()
     .trim()
     .toLowerCase()
     .replace(/[^a-z0-9]+/g, '-')
 }
 
 export const findIndexBySlug = (slug: string, tags: Tag[]) => {
-  return tags.findIndex(tag => tag.slug === slug)
+  return tags.findIndex((tag) => tag.slug === slug)
 }
 
 export const sortByCount = (tags: Tag[]) => {
@@ -50,62 +52,57 @@ export const sortByName = (tags: Tag[]) => {
 }
 
 export const normalizeTags = (raw: QueryTag[]): Tag[] => {
-  return raw
-    .reduce((acc, { node }) => {
-    const { tags, category, seo } = node.frontmatter || {};
+  return raw.reduce((acc, { node }) => {
+    const { tags, category, seo } = node.frontmatter || {}
 
     const normalizedTags = (tags || []).map((tag: string) => {
-      const slug = slugify(tag);
+      const slug = slugify(tag)
 
       return {
         name: tag,
         slug,
         ids: [node.id]
       }
-    });
+    })
 
     if (category) {
-      const slug = slugify(category);
+      const slug = slugify(category)
 
       normalizedTags.push({
         name: category,
         slug,
         ids: [node.id]
-      });
+      })
     }
 
     if (seo && seo.keywords) {
       const keywords = seo.keywords.split(',').map((keyword: string) => {
-        const slug = slugify(keyword);
+        const slug = slugify(keyword)
 
         return {
           name: keyword,
           slug,
           ids: [node.id]
         }
-      });
+      })
 
-      normalizedTags.push(...keywords);
+      normalizedTags.push(...keywords)
     }
 
-    (normalizedTags || []).forEach(tag => {
-      const index = findIndexBySlug(tag.name, acc);
+    ;(normalizedTags || []).forEach((tag) => {
+      const index = findIndexBySlug(tag.name, acc)
 
       if (index === -1) {
-        acc.push(tag);
+        acc.push(tag)
       } else {
-        acc[index].ids?.push(node.id);
+        acc[index].ids?.push(node.id)
       }
     })
-    return acc;
-  }, [] as Tag[]);
+    return acc
+  }, [] as Tag[])
 }
 
-const BlogTags = ({
-  tags,
-  showCount,
-  currentSlug,
-}: PropTypes) => {
+const BlogTags = ({ tags, showCount, currentSlug }: PropTypes) => {
   return (
     <Container
       component="nav"
@@ -116,37 +113,31 @@ const BlogTags = ({
       id="blog-tags"
     >
       <ul className={styles.list}>
-        {[
-          { slug: '..', name: 'All', ids: [] },
-          ...sortByCount(tags)
-        ].map(({
-          slug, name, ids: { length: count } = []
-        }) => (
-          <li
-            key={slug}
-            className={cn(styles.item, {
-              [styles.active]: slug === currentSlug
-            })}
-          >
-            <Link
-              to={`/blog/tag/${slug}#blog-tags`}
-              className={styles.link}
+        {[{ slug: '..', name: 'All', ids: [] }, ...sortByCount(tags)].map(
+          ({ slug, name, ids: { length: count } = [] }) => (
+            <li
+              key={slug}
+              className={cn(styles.item, {
+                [styles.active]: slug === currentSlug
+              })}
             >
-              <span  className={styles.name}>
-                {name}
-              </span>
-              <>{showCount && (
+              <Link to={`/blog/tag/${slug}#blog-tags`} className={styles.link}>
+                <span className={styles.name}>{name}</span>
                 <>
-                  {' '}
-                  <span className={styles.count}>{count}</span>
+                  {showCount && (
+                    <>
+                      {' '}
+                      <span className={styles.count}>{count}</span>
+                    </>
+                  )}
                 </>
-              )}</>
-            </Link>
-          </li>
-        ))}
+              </Link>
+            </li>
+          )
+        )}
       </ul>
     </Container>
-  );
+  )
 }
 
 export default BlogTags

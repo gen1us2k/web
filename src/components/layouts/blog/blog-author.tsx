@@ -10,10 +10,16 @@ interface Profile {
   url: string
 }
 
-const useProfile = (name: string): Profile => React.useMemo(
-  () => content.authors.find(({ name: authorName }) => authorName === name)
-    || { name: '', fullname: '', url: '' },
-  [name])
+const useProfile = (name: string): Profile =>
+  React.useMemo(
+    () =>
+      content.authors.find(({ name: authorName }) => authorName === name) || {
+        name: '',
+        fullname: '',
+        url: ''
+      },
+    [name]
+  )
 
 export const AuthorName = ({
   name,
@@ -22,10 +28,8 @@ export const AuthorName = ({
   name: string
   className: string
 }) => {
-  const { fullname } = useProfile(name) 
-  return (
-    <span className={className}>{fullname ?? name}</span>
-  )
+  const { fullname } = useProfile(name)
+  return <span className={className}>{fullname ?? name}</span>
 }
 
 export const AuthorLink = ({
@@ -35,7 +39,7 @@ export const AuthorLink = ({
   name: string
   className?: string
 }) => {
-  const { fullname, url } = useProfile(name) 
+  const { fullname, url } = useProfile(name)
   if (!url) {
     return <span className={className}>{fullname || name}</span>
   }

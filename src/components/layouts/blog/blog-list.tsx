@@ -35,7 +35,7 @@ export type BlogPostNode = {
     tags?: string[] | null
     featuredimage?: {
       childImageSharp: {
-        gatsbyImageData: any;
+        gatsbyImageData: any
       }
     } | null
     seo?: {
@@ -71,9 +71,7 @@ export const BlogListItem = ({ node }: { node: BlogPostNode }) => (
             <span className={cn('is-themed-primary')}>&gt; </span>
             {node.frontmatter.overline}
           </h2>
-          <h3 className={cn('font-h5', pb8)}>
-            {node.frontmatter.title}
-          </h3>
+          <h3 className={cn('font-h5', pb8)}>{node.frontmatter.title}</h3>
         </Container>
         <Container justify={'start'} className={cn(pb16)}>
           <p className={cn('font-p-smaller')}>
@@ -95,11 +93,7 @@ export const BlogListItem = ({ node }: { node: BlogPostNode }) => (
   </Grid>
 )
 
-const BlogList = ({
-  id,
-  title,
-  posts,
-}: PropTypes) => {
+const BlogList = ({ id, title, posts }: PropTypes) => {
   return (
     <div id={id} className={cn(styles.blogList)}>
       <Container fluid={true} justify={'center'} alignItems={'start'}>
@@ -116,7 +110,9 @@ const BlogList = ({
             </Grid>
           </Container>
           <Container alignItems={'stretch'} justify={'start'}>
-            {(posts || []).map((node) => (<BlogListItem key={node.id} node={node} />))}
+            {(posts || []).map((node) => (
+              <BlogListItem key={node.id} node={node} />
+            ))}
           </Container>
         </Grid>
       </Container>

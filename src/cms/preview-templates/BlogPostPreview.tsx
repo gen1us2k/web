@@ -1,7 +1,4 @@
-import React from 'react'
-import PropTypes from 'prop-types'
 import { Location } from '@reach/router'
-
 import 'prismjs'
 import 'prismjs/components/prism-bash'
 import 'prismjs/components/prism-go'
@@ -12,25 +9,26 @@ import 'prismjs/components/prism-shell-session'
 import 'prismjs/components/prism-tsx'
 import 'prismjs/components/prism-typescript'
 import 'prismjs/components/prism-yaml'
+import PropTypes from 'prop-types'
+import React from 'react'
 
 import '../../../gatsby-browser'
-
 import { PlainBlogTemplate } from '../../templates/blog'
 
 const BlogPostPreview = ({ entry, widgetFor }: any) => {
   const tags = entry.getIn(['data', 'tags'])
-  const author = entry.getIn(['data', 'author']);
-  const title = entry.getIn(['data', 'title']);
-  const overline = entry.getIn(['data', 'overline']);
-  const subtitle = entry.getIn(['data', 'subtitle']);
-  const publishedAt = entry.getIn(['data', 'publishedAt']);
-  const description = entry.getIn(['data', 'description']);
+  const author = entry.getIn(['data', 'author'])
+  const title = entry.getIn(['data', 'title'])
+  const overline = entry.getIn(['data', 'overline'])
+  const subtitle = entry.getIn(['data', 'subtitle'])
+  const publishedAt = entry.getIn(['data', 'publishedAt'])
+  const description = entry.getIn(['data', 'description'])
   return (
     <Location>
       {() => (
         <PlainBlogTemplate
           frontmatter={{
-            description, 
+            description,
             title,
             overline,
             subtitle,
@@ -38,7 +36,9 @@ const BlogPostPreview = ({ entry, widgetFor }: any) => {
             author,
             seo: { title, keywords: (tags || []).join(', ') }
           }}
-        >{widgetFor('body')}</PlainBlogTemplate>
+        >
+          {widgetFor('body')}
+        </PlainBlogTemplate>
       )}
     </Location>
   )
@@ -46,9 +46,9 @@ const BlogPostPreview = ({ entry, widgetFor }: any) => {
 
 BlogPostPreview.propTypes = {
   entry: PropTypes.shape({
-    getIn: PropTypes.func,
+    getIn: PropTypes.func
   }),
-  widgetFor: PropTypes.func,
+  widgetFor: PropTypes.func
 }
 
 export default BlogPostPreview

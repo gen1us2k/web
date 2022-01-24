@@ -1,58 +1,61 @@
-import React from 'react'
 import { useStaticQuery, graphql, PageProps } from 'gatsby'
+import React from 'react'
 
-import BlogList, { BlogPostNode } from '../components/layouts/blog/blog-list'
-import Layout from '../components/layouts/layout/layout'
-import SEO from '../components/layouts/seo/seo'
-import content from '../page-content/content-blog.json'
 import FeaturedBlogPosts from '../components/layouts/blog/blog-featured'
+import BlogList, { BlogPostNode } from '../components/layouts/blog/blog-list'
 import BlogTags, { slugify } from '../components/layouts/blog/blog-tags'
+import Layout from '../components/layouts/layout/layout'
 import Newsletter from '../components/layouts/newsletter/newsletter'
+import SEO from '../components/layouts/seo/seo'
+
+import content from '../page-content/content-blog.json'
 
 const BlogPage = () => {
   const blogPosts = useStaticQuery(graphql`
-  query blogListing{
-    allMdx(
-      filter: {
-        fileAbsolutePath: { regex: "/markdown\/blog/" }
-        frontmatter: { published: { ne: false } }
-      }
-      sort: { fields: [frontmatter___publishedAt], order: DESC }
-    ) {
-      edges {
-        node {
-          id
-          excerpt(pruneLength: 250)
-          frontmatter {
-            featuredimage {
-              childImageSharp {
-                gatsbyImageData
+    query blogListing {
+      allMdx(
+        filter: {
+          fileAbsolutePath: { regex: "/markdown/blog/" }
+          frontmatter: { published: { ne: false } }
+        }
+        sort: { fields: [frontmatter___publishedAt], order: DESC }
+      ) {
+        edges {
+          node {
+            id
+            excerpt(pruneLength: 250)
+            frontmatter {
+              featuredimage {
+                childImageSharp {
+                  gatsbyImageData
+                }
               }
-            }
-            path
-            seo {
+              path
+              seo {
+                title
+                description
+                keywords
+              }
+              tags
+              category
+              publishedAt(formatString: "MMMM DD, YYYY")
+              author
+              path
               title
-              description
-              keywords
+              teaser
+              overline
             }
-            tags
-            category
-            publishedAt(formatString: "MMMM DD, YYYY")
-            author
-            path
-            title
-            teaser
-            overline
           }
         }
       }
     }
-  }
   `)
 
-  const getFeatured = (wanted: keyof typeof content.featured) => (blogPosts?.allMdx?.edges || []).find(({
-    node: { frontmatter: { path = null } = {} } = {}
-  }: any) => path === content.featured[wanted])?.node
+  const getFeatured = (wanted: keyof typeof content.featured) =>
+    (blogPosts?.allMdx?.edges || []).find(
+      ({ node: { frontmatter: { path = null } = {} } = {} }: any) =>
+        path === content.featured[wanted]
+    )?.node
   return (
     <Layout>
       <SEO {...content.seo} />
@@ -70,12 +73,14 @@ const BlogPage = () => {
       <BlogList
         id={content.id}
         title={content.title}
-        posts={blogPosts.allMdx.edges.map(({ node }: { node: BlogPostNode }) => node)}
+        posts={blogPosts.allMdx.edges.map(
+          ({ node }: { node: BlogPostNode }) => node
+        )}
       />
 
       <Newsletter />
     </Layout>
-  );
+  )
 }
 
 export default BlogPage

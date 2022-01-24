@@ -1,12 +1,14 @@
+import cn from 'classnames'
+import { getSrcSet } from 'gatsby-plugin-image'
 import * as React from 'react'
-import cn from 'classnames';
-import { getSrcSet } from "gatsby-plugin-image"
 
+import Button from '../../freestanding/button/button'
 import Container from '../../freestanding/containers/container'
+
 import { AuthorName } from './blog-author'
-import Button from '../../freestanding/button/button';
-import * as styles from './blog-featured.module.css';
-import type { BlogPostNode } from './blog-list';
+import type { BlogPostNode } from './blog-list'
+
+import * as styles from './blog-featured.module.css'
 
 export interface BlogFeaturedProps {
   big: BlogPostNode
@@ -22,28 +24,32 @@ const Base = ({
   teaser,
   path,
   featuredimage,
-  big,
-}: BlogPostNode["frontmatter"] & {
+  big
+}: BlogPostNode['frontmatter'] & {
   big?: boolean
 }) => {
-  const image = featuredimage && getSrcSet(featuredimage.childImageSharp.gatsbyImageData);
+  const image =
+    featuredimage && getSrcSet(featuredimage.childImageSharp.gatsbyImageData)
   return (
     <article
       className={cn(styles.article, {
-        [styles.big]: big,
+        [styles.big]: big
       })}
     >
-      <svg className={styles.svgDeco} width="108" height="48" viewBox="0 0 108 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M54 -2.36041e-06L108 25.732L108 48L54 22.268L0 48L-9.73367e-07 25.732L54 -2.36041e-06Z"/>
-        <path d="M54 48L-8.60276e-06 22.268L-7.62939e-06 -4.72083e-06L54 25.732L108 0L108 22.268L54 48Z"/>
+      <svg
+        className={styles.svgDeco}
+        width="108"
+        height="48"
+        viewBox="0 0 108 48"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path d="M54 -2.36041e-06L108 25.732L108 48L54 22.268L0 48L-9.73367e-07 25.732L54 -2.36041e-06Z" />
+        <path d="M54 48L-8.60276e-06 22.268L-7.62939e-06 -4.72083e-06L54 25.732L108 0L108 22.268L54 48Z" />
       </svg>
 
       {big && image && (
-        <img
-          alt="Illustration"
-          className={styles.image}
-          srcSet={image}
-        />
+        <img alt="Illustration" className={styles.image} srcSet={image} />
       )}
 
       <h2 className={cn(styles.overline, 'font-overline')}>
@@ -55,11 +61,8 @@ const Base = ({
 
       <div className={styles.meta}>
         <p className={cn('font-p-smaller')}>
-          <AuthorName
-            className={cn('font-p-smaller')}
-            name={author || ''}
-          />{' '}
-          - {publishedAt}
+          <AuthorName className={cn('font-p-smaller')} name={author || ''} /> -{' '}
+          {publishedAt}
         </p>
       </div>
 
@@ -79,21 +82,12 @@ const Base = ({
 }
 
 const FeaturedBlogPosts = ({
-  big:{
-    frontmatter: big,
-  },
-  top:{
-    frontmatter: top,
-  },
-  bottom:{
-    frontmatter: bottom,
-  },
+  big: { frontmatter: big },
+  top: { frontmatter: top },
+  bottom: { frontmatter: bottom }
 }: BlogFeaturedProps) => {
   return (
-    <Container
-      fluid
-      className={styles.root}
-    >
+    <Container fluid className={styles.root}>
       <Base {...big} big />
 
       <div className={styles.side}>
@@ -101,7 +95,7 @@ const FeaturedBlogPosts = ({
         <Base {...bottom} />
       </div>
     </Container>
-  );
-};
+  )
+}
 
-export default FeaturedBlogPosts;
+export default FeaturedBlogPosts

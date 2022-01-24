@@ -1,5 +1,4 @@
 declare const styles: {
-  readonly "dropdownMobileItem": string;
-};
-export = styles;
-
+  readonly dropdownMobileItem: string
+}
+export = styles
