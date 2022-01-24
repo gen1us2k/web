@@ -28,6 +28,7 @@ export interface QueryTag {
 export interface Tag {
   name: string
   slug: string
+  description?: string
   ids?: string[]
 }
 
