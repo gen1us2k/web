@@ -5,4 +5,4 @@ import BlogPostPreview from './preview-templates/BlogPostPreview'
 
 CMS.registerMediaLibrary(uploadcare)
 
-CMS.registerPreviewTemplate('blog', BlogPostPreview)
+CMS.registerPreviewTemplate('blogpost', BlogPostPreview)

@@ -33,7 +33,7 @@ collections:
               - label: Big
                 name: big
                 widget: relation
-                collection: blog
+                collection: blogpost
                 value_field: path
                 search_fields:
                   - path
@@ -43,7 +43,7 @@ collections:
               - label: Top
                 name: top
                 widget: relation
-                collection: blog
+                collection: blogpost
                 value_field: path
                 search_fields:
                   - path
@@ -53,7 +53,7 @@ collections:
               - label: Bottom
                 name: bottom
                 widget: relation
-                collection: blog
+                collection: blogpost
                 value_field: path
                 search_fields:
                   - path
@@ -96,7 +96,7 @@ collections:
                 widget: string
                 required: false
 
-  - name: "blog"
+  - name: "blogpost"
     label: "Blog posts"
     label_singular: "Blog post"
     folder: "src/markdown/blog"
@@ -131,7 +131,7 @@ collections:
           label: "Template Key",
           name: "templateKey",
           widget: "hidden",
-          default: "blog",
+          default: "blogpost",
         }
       - {
           label: "Tags",
