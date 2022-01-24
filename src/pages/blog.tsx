@@ -2,6 +2,7 @@ import { useStaticQuery, graphql, PageProps } from 'gatsby'
 import React from 'react'
 
 import FeaturedBlogPosts from '../components/layouts/blog/blog-featured'
+import BlogHeading from '../components/layouts/blog/blog-heading'
 import BlogList, { BlogPostNode } from '../components/layouts/blog/blog-list'
 import BlogTags, { slugify } from '../components/layouts/blog/blog-tags'
 import Layout from '../components/layouts/layout/layout'
@@ -66,13 +67,14 @@ const BlogPage = () => {
         bottom={getFeatured('bottom')}
       />
 
+      <BlogHeading title={content.title} />
+
       <BlogTags
         tags={content.tags.map(({ name }) => ({ name, slug: slugify(name) }))}
       />
 
       <BlogList
         id={content.id}
-        title={content.title}
         posts={blogPosts.allMdx.edges.map(
           ({ node }: { node: BlogPostNode }) => node
         )}

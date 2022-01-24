@@ -2,8 +2,9 @@ import { PageProps, useStaticQuery, graphql } from 'gatsby'
 import React from 'react'
 
 import FeaturedBlogPosts from '../components/layouts/blog/blog-featured'
+import BlogHeading from '../components/layouts/blog/blog-heading'
 import BlogList, { BlogPostNode } from '../components/layouts/blog/blog-list'
-import BlogTags, { slugify } from '../components/layouts/blog/blog-tags'
+import BlogTags, { findTagBySlug, slugify } from '../components/layouts/blog/blog-tags'
 import Layout from '../components/layouts/layout/layout'
 import Newsletter from '../components/layouts/newsletter/newsletter'
 import SEO from '../components/layouts/seo/seo'
@@ -73,6 +74,11 @@ const BlogTagPage = ({
         path === content.featured[wanted]
     )?.node
 
+  const tag = findTagBySlug((content.tags || []).map((t) => ({
+    ...t,
+    slug: slugify(t.name)
+  })), tagSlug)
+
   return (
     <Layout>
       <SEO {...seo} />
@@ -83,12 +89,14 @@ const BlogTagPage = ({
         bottom={getFeatured('bottom')}
       />
 
+      <BlogHeading title={tag?.name || ''} />
+
       <BlogTags
         currentSlug={tagSlug}
         tags={content.tags.map(({ name }) => ({ name, slug: slugify(name) }))}
       />
 
-      <BlogList id={`blog.${tagName}.list`} title={tagName} posts={posts} />
+      <BlogList id={`blog.${tagSlug}.list`} posts={posts} />
 
       <Newsletter />
     </Layout>

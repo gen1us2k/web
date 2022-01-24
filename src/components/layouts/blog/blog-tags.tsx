@@ -39,6 +39,10 @@ export const slugify = (text: string) => {
     .replace(/[^a-z0-9]+/g, '-')
 }
 
+export const findTagBySlug = (tags: Tag[], slug: string) => {
+  return tags.find(tag => tag.slug === slug)
+}
+
 export const findIndexBySlug = (slug: string, tags: Tag[]) => {
   return tags.findIndex((tag) => tag.slug === slug)
 }

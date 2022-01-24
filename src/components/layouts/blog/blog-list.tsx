@@ -17,7 +17,6 @@ import * as styles from './blog-list.module.css'
 
 export interface PropTypes {
   id: string
-  title: string
   posts: BlogPostNode[]
 }
 
@@ -93,22 +92,11 @@ export const BlogListItem = ({ node }: { node: BlogPostNode }) => (
   </Grid>
 )
 
-const BlogList = ({ id, title, posts }: PropTypes) => {
+const BlogList = ({ id, posts }: PropTypes) => {
   return (
     <div id={id} className={cn(styles.blogList)}>
       <Container fluid={true} justify={'center'} alignItems={'start'}>
         <Grid lg={12} md={12} sm={12} xs={12}>
-          <Container fluid={true} justify={'center'}>
-            <Grid
-              lg={8}
-              md={10}
-              sm={12}
-              xs={12}
-              className={cn('text-is-centered', pb64)}
-            >
-              <h1 className={'font-h1'}>{title}</h1>
-            </Grid>
-          </Container>
           <Container alignItems={'stretch'} justify={'start'}>
             {(posts || []).map((node) => (
               <BlogListItem key={node.id} node={node} />
