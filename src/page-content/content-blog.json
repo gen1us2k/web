@@ -50,6 +50,7 @@
     }
   ],
   "featured": {
+    "title": "Featured blog posts",
     "big": "/choose-recommended-argon2-parameters-password-hashing/",
     "top": "/cloud-ecommerce-frontend/",
     "bottom": "/looking-at-keto/"

@@ -62,6 +62,7 @@ const BlogPage = () => {
       <SEO {...content.seo} />
 
       <FeaturedBlogPosts
+        title={content.featured.title}
         big={getFeatured('big')}
         top={getFeatured('top')}
         bottom={getFeatured('bottom')}

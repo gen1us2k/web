@@ -30,6 +30,9 @@ collections:
             hint: Control which blog posts are featured on the blog
             widget: "object"
             fields:
+              - label: title
+                name: title
+                widget: "string"
               - label: Big
                 name: big
                 widget: relation

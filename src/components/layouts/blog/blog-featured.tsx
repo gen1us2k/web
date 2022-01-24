@@ -9,8 +9,10 @@ import { AuthorName } from './blog-author'
 import type { BlogPostNode } from './blog-list'
 
 import * as styles from './blog-featured.module.css'
+import BlogHeading from './blog-heading'
 
 export interface BlogFeaturedProps {
+  title: string
   big: BlogPostNode
   top: BlogPostNode
   bottom: BlogPostNode
@@ -82,19 +84,24 @@ const Base = ({
 }
 
 const FeaturedBlogPosts = ({
+  title,
   big: { frontmatter: big },
   top: { frontmatter: top },
   bottom: { frontmatter: bottom }
 }: BlogFeaturedProps) => {
   return (
-    <Container fluid className={styles.root}>
-      <Base {...big} big />
+    <>
+      <BlogHeading title={title} />
 
-      <div className={styles.side}>
-        <Base {...top} />
-        <Base {...bottom} />
-      </div>
-    </Container>
+      <Container fluid className={styles.root}>
+        <Base {...big} big />
+
+        <div className={styles.side}>
+          <Base {...top} />
+          <Base {...bottom} />
+        </div>
+      </Container>
+    </>
   )
 }
 
