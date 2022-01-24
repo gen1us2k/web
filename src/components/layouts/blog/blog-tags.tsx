@@ -119,6 +119,7 @@ const BlogTags = ({ tags, showCount, currentSlug }: PropTypes) => {
               key={slug}
               className={cn(styles.item, {
                 [styles.active]: slug === currentSlug
+                  || (slug === '..' && !currentSlug)
               })}
             >
               <Link to={`/blog/tag/${slug}#blog-tags`} className={styles.link}>
