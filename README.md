@@ -21,6 +21,8 @@ TODO: write something clever about the process.
 When editing files of the Git repository, the blog post files
 must use the `.mdx` extension and placed in the [`src/markdown/blog`](src/markdown/blog) folder.
 
+For new authors please create your profile by editing `src/components/layouts/blog/blog-author.tsx`
+
 **TODO**
 
 - frontmatter fields
@@ -47,7 +49,7 @@ The text of your article...
 
 Use the `npm start` command will start a [Gatsby](https://gatsbyjs.org/) development server,
 a Storybook server (on port 6006) and a [Netlify CMS](https://www.netlifycms.org/) proxy server
-to work locally.  
+to work locally.
 Alternatively, you can run `npm run start:gatsby` and `npm run start:netlifycmsproxy`
 (or `npx nodemon -w static/admin/config.yml -x 'npx netlify-cms-proxy-server'`) in separate terminals.
 

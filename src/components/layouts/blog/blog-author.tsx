@@ -39,6 +39,10 @@ const authors: { [key: string]: Profile } = {
   sashatalalasha: {
     fullname: 'Alexandra Talalaieva',
     github: 'https://github.com/sashatalalasha'
+  },
+  gen1us2k: {
+    fullname: 'Andrew Minkin',
+    github: 'https://github.com/gen1us2k'
   }
 }
 
