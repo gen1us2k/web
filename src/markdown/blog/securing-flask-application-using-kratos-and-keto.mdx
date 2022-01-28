@@ -3,7 +3,7 @@ templateKey: blog
 path: '/securing-flask-application-using-kratos-and-keto/'
 author: gen1us2k
 title: Securing Your Flask Application Using Kratos and Keto
-teaser: Securing your flask application using kratos and keto
+teaser: Securing your flask application using Kratos and Keto
 subtitle: Let's build a flask application using Ory Kratos and Ory Keto
 overline: Securing flask application using Kratos and Keto
 publishedAt: 2022-01-24
@@ -12,97 +12,78 @@ featuredimage: media/logo-copy.png
 description: ""
 tags: []
 ---
-In this blog post, I will show you an example of how you can secure your homepage using Ory Kratos and Ory Keto. The Flask application will have the following flow for authorization:
+import CodeFromRemote from '../../components/freestanding/utils/codefromremote'
 
-1. A user opens a homepage
-2. Flask view gets 'ory_kratos_session' value from request cookie
-3. Restrict access to the homepage if the user is inactive
-4. Get the user's identity from Kratos
-5. Restrict access to the homepage if we have no user's identity from Kratos
-6. Restrict access to the homepage if access is not allowed by Keto
+Nowadays engineering community has many products for authentication in their frameworks. Lots of them have built-in features for authentication and a lot of libraries available for social sign-in. We have Django framework, Flask, and python-social-auth to build almost everything we need to authenticate users in the pythonic world.
 
-## Boostraping the project
+In this article, I'll show you an example of how to have everything we need for the user's authentication without writing lots of lines of code.
 
-This project will use Postgres, Docker and docker-compose for demonstration. We will use one instance of Postgres per service to make this example easier for understanding.
-You can boostrap your project using [flask cookiecutter](https://github.com/cookiecutter-flask/cookiecutter-flask) template
+Let's take a look at the login flow of our application using Ory Kratos and Ory Keto:
 
-## Setting up Kratos
+- A user opens a homepage
+- Flask view gets 'ory_kratos_session' value from request cookie
+- Restrict access to the homepage if the user is inactive
+- Get the user's identity from Kratos
+- Restrict access to the homepage if we have no user's identity from Kratos
+- Restrict access to the homepage if access is not allowed by Keto
 
-According to the [quickstart](https://www.ory.sh/kratos/docs/quickstart) guide you need to:
+## What we will use in our project
 
-1. Copy contents of [contrib/quickstart/kratos/email-password](https://github.com/ory/kratos/tree/master/contrib/quickstart/kratos/email-password) folder to your project
-2. Add the following content to the docker-compose
- you can easily understand how does kratos works but in our case we will do some modifications
+- [flask cookiecutter](https://github.com/cookiecutter-flask/cookiecutter-flask) is a great tool to bootstrap our project structure. It's always a great idea to have ready-to-use linters, Dockerfile, and package management tools from the box.
+- Postgres as an RDBMS. We will have two Postgres services running in two containers in this example. I think that it's a great idea to keep it simple without using custom scripts to have multiple databases available in a single docker-compose service.
+- Ory Kratos with UI to authenticate users
+- Ory Keto as an access control service
 
+## Setting up  Kratos
+
+Kratos will be responsible for storing identity data such as email/login and password.
+Using the [quickstart](https://www.ory.sh/kratos/docs/quickstart) guide we need to Copy contents of [contrib/quickstart/kratos/email-password](https://github.com/ory/kratos/tree/master/contrib/quickstart/kratos/email-password) to the root of your project and then add the following content to the docker-compose
+
+<CodeFromRemote
+  lang="yml"
+  src="https://github.com/gen1us2k/kratos_flask_example/blob/master/docker-compose.yml"
+  startAt="kratos-migrate:"
+  endAt="keto-migrate:"
+/>
+
+Please, don't forget to add your flask service to the intranet network, or you can run it locally using the `flask run` command.
+
+## Setting up Keto
+You can get familiar with [Keto concepts] reading [quickstart](https://www.ory.sh/keto/docs/quickstart/) guide. These articles can give you a brief introduction to it. Since we need to manage access to the home page, we need to create a folder `keto` at the root of our project and have a `keto/keto.yml` file with the following content
+
+<CodeFromRemote
+  lang="yml"
+  src="https://github.com/gen1us2k/kratos_flask_example/blob/master/keto/keto.yml"
+  startAt="kratos-migrate:"
+  endAt="keto-migrate:"
+/>
 ```yaml
-services:
-  kratos-migrate:
-    image: oryd/kratos:v0.8.0-alpha.3
-    links:
-      - postgresd:postgresd
-    environment:
-      - DSN=postgres://kratos:secret@postgresd:5432/kratos?sslmode=disable&max_conns=20&max_idle_conns=4
-    networks:
-      - intranet
-    volumes:
-      - type: bind
-        source: ./kratos
-        target: /etc/config/kratos
-    command: -c /etc/config/kratos/kratos.yml migrate sql -e --yes
+version: v0.7.0-alpha.1
 
-  kratos:
-    image: oryd/kratos:v0.8.0-alpha.3
-    links:
-      - postgresd:postgresd
-    environment:
-      - DSN=postgres://kratos:secret@postgresd:5432/kratos?sslmode=disable&max_conns=20&max_idle_conns=4
-    ports:
-      - '4433:4433'
-      - '4434:4434'
-    volumes:
-      - type: bind
-        source: ./kratos
-        target: /etc/config/kratos
-    networks:
-      - intranet
-    command: serve -c /etc/config/kratos/kratos.yml --dev --watch-courier
+log:
+  level: debug
 
+namespaces:
+  - name: app
+    id: 1
 
-  postgresd:
-    image: postgres:9.6
-    ports:
-      - "5432:5432"
-    environment:
-      - POSTGRES_USER=kratos
-      - POSTGRES_PASSWORD=secret
-      - POSTGRES_DB=kratos
-    networks:
-      - intranet
-
-  kratos-selfservice-ui-node:
-    image: oryd/kratos-selfservice-ui-node:v0.8.0-alpha.3
-    environment:
-      - KRATOS_PUBLIC_URL=http://kratos:4433/
-      - KRATOS_BROWSER_URL=http://127.0.0.1:4433/
-    networks:
-      - intranet
-    ports:
-      - "4455:3000"
-    restart: on-failure
-
-
-  mailslurper:
-    image: oryd/mailslurper:latest-smtps
-    ports:
-      - '4436:4436'
-      - '4437:4437'
-    networks:
-      - intranet
-networks:
-  intranet:
+serve:
+  read:
+    host: 0.0.0.0
+    port: 4466
+  write:
+    host: 0.0.0.0
+    port: 4467
 ```
 
-## Configuring Keto
+We need to have the following containers
+
+- postgresd-auth this is the database for Keto
+- keto-migrate is a tool that makes database migrations
+- keto-perms is a wrapper to work with permissions using a command-line interface
+- keto runs the server
+
+We need to add the following configuration to `docker-compose.yml`
 
 ```yaml
   postgresd-auth:
