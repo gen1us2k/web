@@ -3,9 +3,9 @@ templateKey: blog
 path: '/securing-flask-application-using-kratos-and-keto/'
 author: gen1us2k
 title: Securing Your Flask Application Using Kratos and Keto
-teaser: Securing your flask application using Kratos and Keto
+teaser: Securing your flask application with open source solutions
 subtitle: Let's build a flask application using Ory Kratos and Ory Keto
-overline: Securing flask application using Kratos and Keto
+overline: Flask authentication guide
 publishedAt: 2022-01-24
 published: true
 featuredimage: media/logo-copy.png
@@ -78,11 +78,12 @@ Keto has configured namespace `app` to use in Flask application. Following the g
 *Cons*
 
 - Lack of UI can be dealbreaker for non-engineering staff
-- It can violate [GDPR](https://gdpr-info.eu/), [HIPAA](https://www.cdc.gov/phlp/publications/topic/hipaa.html#:~:text=The%20Health%20Insurance%20Portability%20and,the%20patient's%20consent%20or%20knowledge.) or any other compliances because we use personal data in this case
+- This permission policy can violate [GDPR](https://gdpr-info.eu/), [HIPAA](https://www.cdc.gov/phlp/publications/topic/hipaa.html#:~:text=The%20Health%20Insurance%20Portability%20and,the%20patient's%20consent%20or%20knowledge.) or any other compliances due to personal data usage.
 
 
 
 ## Flask part
+
 
 <CodeFromRemote
   lang="yml"
@@ -92,9 +93,10 @@ Keto has configured namespace `app` to use in Flask application. Following the g
 
 ## Nota bene
 
-1. Get value of `ory_kratos_session` cookie and don't pass
-2. Use Flask middleware and `ory/kratos` `keto` clients
-3. It's better to use Ory Cloud instead of Open Source Kratos version
+- Consider having `authorization` and `authentication` packages that use [Kratos SDK](https://www.ory.sh/kratos/docs/next/sdk/) and [Keto SDK](https://www.ory.sh/keto/docs/next/sdk/index/). Instead of just calling some magic endpoints, your code will be more readable with SDKs
+- Please pay attention to configure [login session](https://www.ory.sh/kratos/docs/guides/login-session/) and [cookies](https://www.ory.sh/kratos/docs/guides/configuring-cookies)
+- It's better to use [Ory Cloud](https://www.ory.sh/docs/start-building/create-project) instead of having Ory Kratos managed by your team just because Ory manages it, and you don't need to enable observability/logging/metrics for your service.
+
 
 ## Next steps
 
