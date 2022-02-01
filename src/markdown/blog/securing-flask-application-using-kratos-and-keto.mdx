@@ -1,0 +1,105 @@
+---
+templateKey: blog
+path: '/securing-flask-application-using-kratos-and-keto/'
+author: gen1us2k
+title: Securing Your Flask Application Using Kratos and Keto
+teaser: Securing your flask application with open source solutions
+subtitle: Let's build a flask application using Ory Kratos and Ory Keto
+overline: Flask authentication guide
+publishedAt: 2022-02-01
+published: true
+description: ""
+tags: []
+---
+import CodeFromRemote from '../../components/freestanding/utils/codefromremote'
+
+Nowadays the engineering community has many products for authentication in their frameworks. Lots of them have built-in features for authentication and a lot of libraries available for social sign-in. We have the Django framework, Flask, and python-social-auth to build almost everything we need to authenticate users in the pythonic world.
+
+In this article, I'll show you an example of how to add everything we need for the user's authentication without writing lots of lines of code. The code used in this blog post is available on [GitHub](https://github.com/gen1us2k/kratos_flask_example).
+
+Let's take a look at the login flow of our application using Ory Kratos and Ory Keto
+[![](https://mermaid.ink/img/pako:eNptkktOIzEQhq9S8iojMSIShIUXSIjHCM2CRZRdS1CyK2kraVeP7RYKCGkuMIs5AbsR7DgTJ-AIlNsN0ZB4U9Xu7__rId8rw5aUVpF-deQNnTlcBGwqD3JaDMkZ16JP0EUKgBFmEiOM3h7_Pr3-_vP2-O9F0uch_batWwZMHGeXWfuzz0E-RvrwcDLZgQ_IJ5zBg4Md4HyFcZm5iz4Z6cl4PN5lSIl7uxyz29GRUIXLM30_Pu6tNFy15AGh5oZaXFBBcJVg6hYeLv1-jrO23OfT6zb6H5TghsP6uox8HSlGx_4GDPPS0bauTFiEzpJPLq0hBXQpwjxwA_u3NWPjgLxt2flULGgVCbBLdVYYTGSHe283PZ8YI-XhlH0KvNpRW9ahwdRkZImFlf2I55f5P4txcHdblQa3vEcN05pvY29hpKo0Bzz_zzErim7TTz5qTzUUGnRWHuJ9_lcp0TVUKS2pxbCsVOUfhOtaKwOfW5c4KD1H6W5PSXs8XXujdAodfUDDSx6oh3d7rfx0)](https://mermaid.live/edit#pako:eNptkktOIzEQhq9S8iojMSIShIUXSIjHCM2CRZRdS1CyK2kraVeP7RYKCGkuMIs5AbsR7DgTJ-AIlNsN0ZB4U9Xu7__rId8rw5aUVpF-deQNnTlcBGwqD3JaDMkZ16JP0EUKgBFmEiOM3h7_Pr3-_vP2-O9F0uch_batWwZMHGeXWfuzz0E-RvrwcDLZgQ_IJ5zBg4Md4HyFcZm5iz4Z6cl4PN5lSIl7uxyz29GRUIXLM30_Pu6tNFy15AGh5oZaXFBBcJVg6hYeLv1-jrO23OfT6zb6H5TghsP6uox8HSlGx_4GDPPS0bauTFiEzpJPLq0hBXQpwjxwA_u3NWPjgLxt2flULGgVCbBLdVYYTGSHe283PZ8YI-XhlH0KvNpRW9ahwdRkZImFlf2I55f5P4txcHdblQa3vEcN05pvY29hpKo0Bzz_zzErim7TTz5qTzUUGnRWHuJ9_lcp0TVUKS2pxbCsVOUfhOtaKwOfW5c4KD1H6W5PSXs8XXujdAodfUDDSx6oh3d7rfx0)
+
+## What we will use in our project
+
+- [Flask cookiecutter](https://github.com/cookiecutter-flask/cookiecutter-flask) is a great tool to bootstrap our project structure. It's always a great idea to have ready-to-use linters, Dockerfile, and package management tools out of the box.
+- Postgres as an RDBMS. We will have two Postgres services running in two containers in this example. I think that it's a great idea to keep it simple without using custom scripts to have multiple databases available in a single docker-compose service.
+- Ory Kratos with UI to authenticate users.
+- Ory Keto as an access control service.
+
+## Setting up Ory Kratos
+
+Ory Kratos will be responsible for storing identity data such as email/login and password.
+Using the [quickstart](https://www.ory.sh/kratos/docs/quickstart) guide we need to copy contents of [contrib/quickstart/kratos/email-password](https://github.com/ory/kratos/tree/master/contrib/quickstart/kratos/email-password) to the root of your project and then add the following content to the docker-compose
+
+<CodeFromRemote
+  lang="yml"
+  src="https://github.com/gen1us2k/kratos_flask_example/blob/master/docker-compose.yml"
+  startAt="postgres-kratos:"
+  endAt="postgres-keto:"
+/>
+
+## Setting up Ory Keto
+You can get familiar with the [concepts of Ory Keto](https://www.ory.sh/keto/docs/concepts/relation-tuples/) reading [quickstart](https://www.ory.sh/keto/docs/quickstart/) guide. These articles can give you a brief introduction to it. Since we need to manage access to the home page, we need to create a folder `keto` at the root of our project and have a `keto/keto.yml` file with the following content:
+
+<CodeFromRemote
+  lang="yml"
+  src="https://github.com/gen1us2k/kratos_flask_example/blob/master/keto/keto.yml"
+  startAt="postgres-keto:"
+  endAt="volumes:"
+/>
+
+We need the following containers:
+
+- postgresd-auth is the database for Ory Keto.
+- keto-migrate that takes care of database migrations.
+- keto-perms is a wrapper to work with permissions using a command-line interface.
+- keto runs the server.
+
+<CodeFromRemote
+  lang="yml"
+  src="https://github.com/gen1us2k/kratos_flask_example/blob/master/docker-compose.yml"
+  startAt="postgresd-auth:"
+/>
+
+### Working with policies
+
+Keto has configured namespace `app` to use in Flask application. Following the guide [Check whether a User has Access to Something](https://www.ory.sh/keto/docs/guides/simple-access-check-guide) I decided to implement simple permission policy for the demo project:
+
+- Use keto-cli managing permissions.
+- Use email for [subjects](https://www.ory.sh/keto/docs/concepts/subjects) without `@` symbol.
+
+*Pros*
+
+- Easy to use and maintain.
+- Can easily be automated using CI/CD pipelines.
+
+*Cons*
+
+- Lack of UI can be dealbreaker for non-engineering staff
+- This permission policy can violate [GDPR](https://gdpr-info.eu/), [HIPAA](https://www.cdc.gov/phlp/publications/topic/hipaa.html#:~:text=The%20Health%20Insurance%20Portability%20and,the%20patient's%20consent%20or%20knowledge.) or any other compliances due to personal data usage.
+
+
+
+## Flask part
+
+
+<CodeFromRemote
+  lang="yml"
+  src="https://github.com/gen1us2k/kratos_flask_example/blob/master/app/public/views.py"
+  startAt="HTTP_STATUS_FORBIDDEN = 403"
+/>
+
+## Nota bene
+
+- Consider having `authorization` and `authentication` packages that use [Kratos SDK](https://www.ory.sh/kratos/docs/next/sdk/) and [Keto SDK](https://www.ory.sh/keto/docs/next/sdk/index/). Instead of just calling some magic endpoints, your code will be more readable with SDKs
+- Please pay attention to configure [login session](https://www.ory.sh/kratos/docs/guides/login-session/) and [cookies](https://www.ory.sh/kratos/docs/guides/configuring-cookies)
+- It's better to use [Ory Cloud](https://www.ory.sh/docs/start-building/create-project) instead of having Ory Kratos managed by your team just because Ory manages it, and you don't need to enable observability/logging/metrics for your service.
+
+
+## Next steps
+
+1. [Add Two Factor Authentication (2FA) to your App](https://www.ory.sh/kratos/docs/next/two-factor-authentication-2fa-mfa/)
+2. [Add social signin features](https://www.ory.sh/kratos/docs/next/guides/sign-in-with-github-google-facebook-linkedin/)
+3. [Configure more secure password policies](https://www.ory.sh/kratos/docs/next/guides/password-policy/)
+4. [Implement email and phone verification and account Activation](https://www.ory.sh/kratos/docs/next/self-service/flows/verify-email-account-activation/)
