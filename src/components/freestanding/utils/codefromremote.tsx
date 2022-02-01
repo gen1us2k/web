@@ -14,6 +14,8 @@ const detectLanguage = (src: string) => {
   switch (ext) {
     case 'jsx':
       return 'jsx'
+    case 'py':
+      return 'yml' // FIXME: That's just workaround
     case 'tsx':
       return 'tsx'
     case 'ts':
