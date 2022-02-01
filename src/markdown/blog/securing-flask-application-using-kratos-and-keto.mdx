@@ -14,19 +14,19 @@ tags: []
 ---
 import CodeFromRemote from '../../components/freestanding/utils/codefromremote'
 
-Nowadays engineering community has many products for authentication in their frameworks. Lots of them have built-in features for authentication and a lot of libraries available for social sign-in. We have Django framework, Flask, and python-social-auth to build almost everything we need to authenticate users in the pythonic world.
+Nowadays the engineering community has many products for authentication in their frameworks. Lots of them have built-in features for authentication and a lot of libraries available for social sign-in. We have the Django framework, Flask, and python-social-auth to build almost everything we need to authenticate users in the pythonic world.
 
-In this article, I'll show you an example of how to have everything we need for the user's authentication without writing lots of lines of code. Code used in this blog post is available on [GitHub](https://github.com/gen1us2k/kratos_flask_example)
+In this article, I'll show you an example of how to add everything we need for the user's authentication without writing lots of lines of code. The code used in this blog post is available on [GitHub](https://github.com/gen1us2k/kratos_flask_example).
 
 Let's take a look at the login flow of our application using Ory Kratos and Ory Keto
 [![](https://mermaid.ink/img/pako:eNptkktOIzEQhq9S8iojMSIShIUXSIjHCM2CRZRdS1CyK2kraVeP7RYKCGkuMIs5AbsR7DgTJ-AIlNsN0ZB4U9Xu7__rId8rw5aUVpF-deQNnTlcBGwqD3JaDMkZ16JP0EUKgBFmEiOM3h7_Pr3-_vP2-O9F0uch_batWwZMHGeXWfuzz0E-RvrwcDLZgQ_IJ5zBg4Md4HyFcZm5iz4Z6cl4PN5lSIl7uxyz29GRUIXLM30_Pu6tNFy15AGh5oZaXFBBcJVg6hYeLv1-jrO23OfT6zb6H5TghsP6uox8HSlGx_4GDPPS0bauTFiEzpJPLq0hBXQpwjxwA_u3NWPjgLxt2flULGgVCbBLdVYYTGSHe283PZ8YI-XhlH0KvNpRW9ahwdRkZImFlf2I55f5P4txcHdblQa3vEcN05pvY29hpKo0Bzz_zzErim7TTz5qTzUUGnRWHuJ9_lcp0TVUKS2pxbCsVOUfhOtaKwOfW5c4KD1H6W5PSXs8XXujdAodfUDDSx6oh3d7rfx0)](https://mermaid.live/edit#pako:eNptkktOIzEQhq9S8iojMSIShIUXSIjHCM2CRZRdS1CyK2kraVeP7RYKCGkuMIs5AbsR7DgTJ-AIlNsN0ZB4U9Xu7__rId8rw5aUVpF-deQNnTlcBGwqD3JaDMkZ16JP0EUKgBFmEiOM3h7_Pr3-_vP2-O9F0uch_batWwZMHGeXWfuzz0E-RvrwcDLZgQ_IJ5zBg4Md4HyFcZm5iz4Z6cl4PN5lSIl7uxyz29GRUIXLM30_Pu6tNFy15AGh5oZaXFBBcJVg6hYeLv1-jrO23OfT6zb6H5TghsP6uox8HSlGx_4GDPPS0bauTFiEzpJPLq0hBXQpwjxwA_u3NWPjgLxt2flULGgVCbBLdVYYTGSHe283PZ8YI-XhlH0KvNpRW9ahwdRkZImFlf2I55f5P4txcHdblQa3vEcN05pvY29hpKo0Bzz_zzErim7TTz5qTzUUGnRWHuJ9_lcp0TVUKS2pxbCsVOUfhOtaKwOfW5c4KD1H6W5PSXs8XXujdAodfUDDSx6oh3d7rfx0)
 
 ## What we will use in our project
 
-- [Flask cookiecutter](https://github.com/cookiecutter-flask/cookiecutter-flask) is a great tool to bootstrap our project structure. It's always a great idea to have ready-to-use linters, Dockerfile, and package management tools from the box.
+- [Flask cookiecutter](https://github.com/cookiecutter-flask/cookiecutter-flask) is a great tool to bootstrap our project structure. It's always a great idea to have ready-to-use linters, Dockerfile, and package management tools out of the box.
 - Postgres as an RDBMS. We will have two Postgres services running in two containers in this example. I think that it's a great idea to keep it simple without using custom scripts to have multiple databases available in a single docker-compose service.
-- Ory Kratos with UI to authenticate users
-- Ory Keto as an access control service
+- Ory Kratos with UI to authenticate users.
+- Ory Keto as an access control service.
 
 ## Setting up  Kratos
 
@@ -68,12 +68,12 @@ We need to have the following containers
 Keto has configured namespace `app` to use in Flask application. Following the guide [Check whether a User has Access to Something](https://www.ory.sh/keto/docs/guides/simple-access-check-guide) I decided to implement simple permission policy for the demo project:
 
 - Use keto-cli managing permissions
-- Use email for [subjects](https://www.ory.sh/keto/docs/concepts/subjects) without `@` symbol
+- Use email for [subjects](https://www.ory.sh/keto/docs/concepts/subjects) without `@` symbol.
 
 *Pros*
 
-- Easy to use and maintain
-- Can easily automated using CI/CD pipelines
+- Easy to use and maintain.
+- Can easily be automated using CI/CD pipelines.
 
 *Cons*
 
