@@ -28,9 +28,9 @@ Let's take a look at the login flow of our application using Ory Kratos and Ory 
 - Ory Kratos with UI to authenticate users.
 - Ory Keto as an access control service.
 
-## Setting up  Kratos
+## Setting up Ory Kratos
 
-Kratos will be responsible for storing identity data such as email/login and password.
+Ory Kratos will be responsible for storing identity data such as email/login and password.
 Using the [quickstart](https://www.ory.sh/kratos/docs/quickstart) guide we need to copy contents of [contrib/quickstart/kratos/email-password](https://github.com/ory/kratos/tree/master/contrib/quickstart/kratos/email-password) to the root of your project and then add the following content to the docker-compose
 
 <CodeFromRemote
@@ -40,8 +40,8 @@ Using the [quickstart](https://www.ory.sh/kratos/docs/quickstart) guide we need 
   endAt="postgres-keto:"
 />
 
-## Setting up Keto
-You can get familiar with [Keto concepts](https://www.ory.sh/keto/docs/concepts/relation-tuples/) reading [quickstart](https://www.ory.sh/keto/docs/quickstart/) guide. These articles can give you a brief introduction to it. Since we need to manage access to the home page, we need to create a folder `keto` at the root of our project and have a `keto/keto.yml` file with the following content
+## Setting up Ory Keto
+You can get familiar with the [concepts of Ory Keto](https://www.ory.sh/keto/docs/concepts/relation-tuples/) reading [quickstart](https://www.ory.sh/keto/docs/quickstart/) guide. These articles can give you a brief introduction to it. Since we need to manage access to the home page, we need to create a folder `keto` at the root of our project and have a `keto/keto.yml` file with the following content:
 
 <CodeFromRemote
   lang="yml"
@@ -50,12 +50,12 @@ You can get familiar with [Keto concepts](https://www.ory.sh/keto/docs/concepts/
   endAt="volumes:"
 />
 
-We need to have the following containers
+We need the following containers:
 
-- postgresd-auth this is the database for Keto
-- keto-migrate is a tool that makes database migrations
-- keto-perms is a wrapper to work with permissions using a command-line interface
-- keto runs the server
+- postgresd-auth is the database for Ory Keto.
+- keto-migrate that takes care of database migrations.
+- keto-perms is a wrapper to work with permissions using a command-line interface.
+- keto runs the server.
 
 <CodeFromRemote
   lang="yml"
@@ -67,7 +67,7 @@ We need to have the following containers
 
 Keto has configured namespace `app` to use in Flask application. Following the guide [Check whether a User has Access to Something](https://www.ory.sh/keto/docs/guides/simple-access-check-guide) I decided to implement simple permission policy for the demo project:
 
-- Use keto-cli managing permissions
+- Use keto-cli managing permissions.
 - Use email for [subjects](https://www.ory.sh/keto/docs/concepts/subjects) without `@` symbol.
 
 *Pros*
