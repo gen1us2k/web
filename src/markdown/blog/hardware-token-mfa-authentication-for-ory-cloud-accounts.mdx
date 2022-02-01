@@ -1,0 +1,70 @@
+---
+path: '/hardware-token-mfa-authentication-for-ory-cloud-accounts/'
+
+title: |
+  How to secure your Ory Cloud account with Yubikey
+
+teaser: |
+  Use hardware tokens like Yubikey to secure Ory Cloud admin accounts.
+
+seo:
+  title: |
+    Step by step guide to secure Ory Cloud with hardware tokens.
+  description: |
+    Multi-factor authentication for Ory Cloud leverages the FIDO2 open authentication standards. In this guide we are going to add a Yubikey to our Ory Cloud account in 3 easy steps. Ory Cloud currently offers two second factors to choose from: TOTP & Hardware Tokens.
+  keywords: |
+    login, auth, authentication, mfa, yubikey, hardware tokens, multifactor, second factor, security, hardened login, open source, ory, ory kratos, ory cloud
+
+publishedAt: '2022-01-26'
+author: vinckr
+
+overline: |
+  Security Guide
+tags:
+ - Product
+ - Guide
+---
+
+Multi-factor authentication ensures that your Ory Cloud account is secured even if your credentials have been compromised. 
+
+Ory Cloud currently offers two second factors to choose from: 
+
+* Authenticator App 
+* Hardware Token
+
+An Authenticator App is an application on e.g. your mobile device that generates a time-based one-time-password (TOTP); generally a six digit code that is valid for ~60 seconds.
+
+A Hardware Token is a physical device that stores cryptographic keys to generate one-time passwords (other methods of authentication are also supported by hardware tokens).
+
+Multi-factor authentication for Ory Cloud leverages the FIDO2 open authentication standards which include both WebAuthentication (web APIs for passwordless authentication in browsers) and CTAP protocols.
+
+In this guide we are going to add a Hardware Token "Yubikey" to our Ory Cloud account in 3 easy steps.
+
+
+Hardware tokens come in many different sizes & shapes. One of the most widespread is the Yubico Yubikey. I am going to use the [Yubikey 5](https://www.yubico.com/products/yubikey-5-overview/) with a USB-C connector in this guide, but it will work just the same with other models.
+
+## Adding Yubikey to Ory Cloud
+
+For this guide you just need your Ory Cloud account and have the Yubikey or other hardware token on hand.
+
+1. Log into console.ory.sh & open the settings page.
+2. Type the name of your security key.   
+   In my case it is Yubikey, but you can name your security key whatever you feel like.  
+3. Hit "Add Security Key" and connect your Yubikey.  
+   Plug in your Yubikey and when you see the symbol blinking with a green light, touch it to activate the Yubikey. 
+
+_That is it, we are done!_ 🥳
+
+See also this video going over the individual steps:
+
+https://youtu.be/MJdFe8ZLTlQ
+
+Your Ory Cloud project is now protected with the Hardware Token "Yubikey". 
+
+When you login the next time, you will use your credentials/social login as before.
+
+Then you get a prompt to `Please complete the second authentication challenge`.
+
+Connect the Yubikey and press the `Use Security Key` button. Now your Yubikey blinks with a green light. Touch it to activate and complete your authentication. 
+
+If you haven't already, [sign up for a free account at Ory Cloud](https://console.ory.sh/registration?preferred_plan=developer)! 

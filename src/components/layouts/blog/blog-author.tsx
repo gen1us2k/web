@@ -2,9 +2,12 @@ import React from 'react'
 
 import Button from '../../freestanding/button/button'
 
+import content from '../../../page-content/content-blog.json'
+
 interface Profile {
+  name: string
   fullname: string
-  github: string
+  url: string
 }
 
 const authors: { [key: string]: Profile } = {
@@ -45,32 +48,43 @@ const authors: { [key: string]: Profile } = {
     github: 'https://github.com/gen1us2k'
   }
 }
+const useProfile = (name: string): Profile =>
+  React.useMemo(
+    () =>
+      content.authors.find(({ name: authorName }) => authorName === name) || {
+        name: '',
+        fullname: '',
+        url: ''
+      },
+    [name]
+  )
 
-const AuthorName = ({
+export const AuthorName = ({
   name,
   className
 }: {
   name: string
   className: string
-}) => <span className={className}>{authors[name]?.fullname ?? name}</span>
+}) => {
+  const { fullname } = useProfile(name)
+  return <span className={className}>{fullname ?? name}</span>
+}
 
-const AuthorLink = ({
+export const AuthorLink = ({
   name,
   className
 }: {
   name: string
   className?: string
 }) => {
-  const profile = authors[name]
-  if (!profile) {
-    return <span className={className}>{name}</span>
+  const { fullname, url } = useProfile(name)
+  if (!url) {
+    return <span className={className}>{fullname || name}</span>
   }
 
   return (
-    <Button className={className} style={'link-inline'} to={profile.github}>
-      {profile.fullname}
+    <Button className={className} style={'link-inline'} to={url}>
+      {fullname || name}
     </Button>
   )
 }
-
-export { AuthorLink, AuthorName }

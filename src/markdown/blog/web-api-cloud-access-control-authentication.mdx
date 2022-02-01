@@ -23,6 +23,8 @@ teaser: >
   application.
 
 subtitle: HTTP Authentication (Part I)
+tags:
+  - Guide
 ---
 
 This is the first blog post in a multi-part series about access control on the
@@ -104,14 +106,17 @@ that identify users based on a cookie. If the cookie is not set, the user is not
 authenticated.
 
 <p>
-<figure>
-    <img loading="lazy" src="../../images/articles/auth-guide/image9.png" alt="User exchanges credentials for a long/short-living session cookie which contains information on the user (e.g. the user’s ID)."/>
+  <figure>
+    <img
+      loading="lazy"
+      src="../../images/articles/auth-guide/image9.png"
+      alt="User exchanges credentials for a long/short-living session cookie which contains information on the user (e.g. the user’s ID)."
+    />
     <figcaption>
-        User exchanges credentials for a long/short-living session
-        cookie which contains information on the user (e.g. the
-        user’s ID).
+      User exchanges credentials for a long/short-living session cookie which
+      contains information on the user (e.g. the user’s ID).
     </figcaption>
-</figure>
+  </figure>
 </p>
 
 Restricting access to the application’s resources usually consists of four
@@ -269,10 +274,14 @@ responsible for managing users and exchanging usernames and passwords for
 temporary credentials. This is usually called Single Sign-On (SSO).
 
 <p>
-<figure>
-    <img loading="lazy" src="../../images/articles/auth-guide/image8.png" alt="Simplified Single Sign-On" />
+  <figure>
+    <img
+      loading="lazy"
+      src="../../images/articles/auth-guide/image8.png"
+      alt="Simplified Single Sign-On"
+    />
     <figcaption>Simplified Single Sign-On</figcaption>
-</figure>
+  </figure>
 </p>
 
 The SSO service is responsible for user management (signup, banning, removing,
@@ -291,12 +300,16 @@ While setting a domain-wide cookie is a valid practice for an SSO service, most
 issue tokens which are sent on every request by the client:
 
 <p>
-<figure>
-    <img loading="lazy" src="../../images/articles/auth-guide/image3.png" alt="A variety of clients accessing the service ecosystem"/>
+  <figure>
+    <img
+      loading="lazy"
+      src="../../images/articles/auth-guide/image3.png"
+      alt="A variety of clients accessing the service ecosystem"
+    />
     <figcaption>
-        A variety of clients accessing the service ecosystem.
+      A variety of clients accessing the service ecosystem.
     </figcaption>
-</figure>
+  </figure>
 </p>
 
 Most SSO products (open source & SaaS) implement open auth\* protocols like

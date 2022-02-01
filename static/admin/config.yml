@@ -2,9 +2,9 @@ backend:
   name: git-gateway
   branch: master
   commit_messages:
-    create: "cms: create “{{slug}}”\n\nin {{collection}}"
-    update: "cms: update “{{slug}}”\n\nin {{collection}}"
-    delete: "cms: delete “{{slug}}”\n\nin {{collection}}"
+    create: "cms: create “{{title}}”\n\nin {{collection}}"
+    update: "cms: update “{{title}}”\n\nin {{collection}}"
+    delete: "cms: delete “{{title}}”\n\nin {{collection}}"
     uploadMedia: "cms: upload “{{path}}”\n\n[skip actions]"
     deleteMedia: "cms: delete “{{path}}”\n\n[skip actions]"
 
@@ -15,7 +15,277 @@ site_url: https://ory.sh
 publish_mode: editorial_workflow
 
 collections:
-  - name: "blog"
+  - label: "Configurations"
+    label_singular: "Configuration"
+    name: "configurations"
+    files:
+      - label: "Blog"
+        name: "blog"
+        file: "src/page-content/content-blog.json"
+        fields:
+          - label: "Featured"
+            name: "featured"
+            hint: Control which blog posts are featured on the blog
+            widget: "object"
+            fields:
+              - label: title
+                name: title
+                widget: "string"
+              - label: Big
+                name: big
+                widget: relation
+                collection: blogpost
+                value_field: path
+                search_fields:
+                  - path
+                  - title
+                display_fields:
+                  - title
+              - label: Top
+                name: top
+                widget: relation
+                collection: blogpost
+                value_field: path
+                search_fields:
+                  - path
+                  - title
+                display_fields:
+                  - title
+              - label: Bottom
+                name: bottom
+                widget: relation
+                collection: blogpost
+                value_field: path
+                search_fields:
+                  - path
+                  - title
+                display_fields:
+                  - title
+          - label: Newsletter
+            name: newsletter
+            widget: "object"
+            fields:
+              - label: Title
+                name: title
+                widget: string
+                default: ""
+                required: false
+              - label: Teaser
+                name: teaser
+                widget: string
+                default: ""
+                required: false
+              - label: Placeholder
+                name: placeholder
+                widget: string
+                default: ""
+                required: false
+              - label: Submit
+                name: submit
+                widget: string
+                default: ""
+                required: false
+              - label: Preselected
+                name: preselect
+                widget: select
+                default: ""
+                required: false
+                options: [kratos, hydra, keto, oathkeeper]
+              - label: Background
+                name: background
+                widget: select
+                default: ""
+                required: false
+                options: [dark, grey, light-grey, themed]
+              - label: Slant
+                name: slant
+                widget: boolean
+                default: false
+                required: false
+              - label: Small padding
+                name: smallpadding
+                widget: boolean
+                default: true
+                required: false
+          - label: "SEO"
+            name: "seo"
+            widget: "object"
+            collapsed: true
+            fields: 
+              - { label: "Title", name: "title", widget: "string", required: false }
+              - { label: "Description", name: "description", widget: "text", required: false }
+          - name: tags
+            label: Promoted tags
+            label_singular: Promoted tag
+            hint: Control which tags / categories appear on the blog
+            widget: list
+            fields:
+              - name: name
+                label: Name
+                widget: string
+              - name: description
+                label: Description
+                widget: text
+                required: false
+          - name: authors
+            label: Authors
+            label_singular: Author
+            widget: list
+            fields:
+              - name: name
+                label: Github handle
+                widget: string
+              - name: fullname
+                label: Name
+                widget: string
+              - name: url
+                label: URL
+                widget: string
+                required: false
+      - label: "Header navigation"
+        name: "layoutheader"
+        file: "src/page-content/navigation/header.json"
+        fields:
+          - label: Dropdown
+            label_singular: Dropdown
+            name: dropdownMenu
+            widget: list
+            fields:
+              - label: Menu category
+                name: title
+                widget: string
+              - label: Menu items
+                name: mainMenu
+                widget: list
+                fields:
+                - label: Title
+                  name: title
+                  widget: string
+                - label: To
+                  name: to
+                  widget: string
+                - label: Description
+                  name: description
+                  widget: string
+                - label: Dot
+                  name: dotted
+                  widget: boolean
+                  default: false
+                  required: false
+                - label: New window
+                  name: openInNewWindow
+                  widget: boolean
+                  default: true
+                  required: false
+              - label: To
+                name: to
+                widget: string
+                default: null
+                required: false
+                hint: If this field is used, the menu items will not be visible
+              - label: Dot
+                name: dotted
+                widget: boolean
+                default: false
+                required: false
+          - label: Mobile
+            label_singular: Mobile
+            name: mobileMenu
+            widget: object
+            fields:
+              - label: Categories
+                name: mobileMenuCategories
+                widget: list
+                fields:
+                  - label: Menu category
+                    name: category
+                    widget: string
+                  - label: Menu items
+                    name: mobileMenuItems
+                    widget: list
+                    fields:
+                    - label: Title
+                      name: title
+                      widget: string
+                    - label: To
+                      name: to
+                      widget: string
+                    - label: Dot
+                      name: dotted
+                      widget: boolean
+                      default: false
+                      required: false
+                    - label: New window
+                      name: openInNewWindow
+                      widget: boolean
+                      default: true
+                      required: false
+      - label: "Footer navigation"
+        name: "layoutfooter"
+        file: "src/page-content/navigation/footer.json"
+        fields:
+          - label: Categories
+            label_singular: Category
+            name: category
+            widget: list
+            fields:
+              - label: Menu category
+                name: menuCategory
+                widget: string
+              - label: Menu items
+                name: menuItems
+                widget: list
+                fields:
+                - label: Title
+                  name: title
+                  widget: string
+                - label: To
+                  name: to
+                  widget: string
+                - label: Description
+                  name: description
+                  widget: string
+                - label: Dot
+                  name: dotted
+                  widget: boolean
+                  default: false
+                  required: false
+                - label: New window
+                  name: openInNewWindow
+                  widget: boolean
+                  default: true
+                  required: false
+          - label: Legal
+            name: legal
+            widget: list
+            fields:
+              - label: Title
+                name: title
+                widget: string
+              - label: To
+                name: to
+                widget: string
+              - label: New window
+                name: openInNewWindow
+                widget: boolean
+                default: true
+                required: false
+          - label: Social
+            name: social
+            widget: list
+            fields:
+              - label: Icon
+                name: icon
+                widget: string
+              - label: To
+                name: to
+                widget: string
+              - label: New window
+                name: openInNewWindow
+                widget: boolean
+                default: true
+                required: false
+  - name: "blogpost"
     label: "Blog posts"
     label_singular: "Blog post"
     folder: "src/markdown/blog"
@@ -24,11 +294,9 @@ collections:
     slug: "{{path}}"
     preview_path_date_field: publishedAt
     summary: "{{publishedAt}} {{title}}"
-
     create: true
     publish: false
     delete: false
-
     media_folder: 'media'
     sortable_fields:
       - "publishedAt"
@@ -50,9 +318,27 @@ collections:
           label: "Template Key",
           name: "templateKey",
           widget: "hidden",
-          default: "blog",
+          default: "blogpost",
         }
-      - { label: "Path", name: "path", widget: "string",  }
+      - {
+          label: "Tags",
+          name: "tags",
+          widget: "list"
+          # TODO: relation would be much better in terms of UX
+          # widget: "relation",
+          # collection: "configuration",
+          # display_field: "name",
+          # value_field: "name",
+          # search_fields: ['*'],
+          # file: "src/page-content/blog-tags.json",
+          # multiple: true
+        }
+      - {
+          label: "Path",
+          name: "path",
+          widget: "string",
+          pattern: ["[a-z0-9-]{12,}", "Must be lowercase, only letters, numbers and -"]
+        }
       - { label: "Author", name: "author", widget: "string" }
       - {
           label: "Title",
@@ -61,7 +347,7 @@ collections:
           pattern: ['.{12,}', "Must have at least 12 characters"]
         }
       - { label: "Teaser", name: "teaser", widget: "string" }
-      - { label: "Sub-title", name: "subtitle", widget: "string" }
+      - { label: "Sub-title", name: "subtitle", widget: "string", required: false }
       - { label: "Over line", name: "overline", widget: "string" }
       - { label: "Publish Date", name: "publishedAt", widget: "datetime", "date_format": "YYYY-MM-DD", "format": "YYYY-MM-DD" }
       - {
@@ -72,8 +358,14 @@ collections:
           required: false,
           hint: "Will only be visible on /blog if \"on\""
         }
-      - { label: "Description", name: "description", widget: "text", required: false }
-      - { label: "Featured Post", name: "featuredpost", widget: "boolean", required: false }
+      - label: "SEO"
+        name: "seo"
+        widget: "object"
+        collapsed: true
+        fields: 
+          - { label: "Title", name: "title", widget: "string", required: false }
+          - { label: "Canonical", name: "canonical", widget: "string", required: false }
+          - { label: "Description", name: "description", widget: "text", required: false }
+      # - { label: "Featured Post", name: "featuredpost", widget: "boolean", required: false }
       - { label: "Featured Image", name: "featuredimage", widget: image, required: false }
-      - { label: "Tags", name: "tags", widget: "list" }
       - { label: "Body", name: "body", widget: "markdown" }

@@ -1,0 +1,152 @@
+.root {
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+  margin: var(--space-small) auto;
+}
+
+.side {
+  max-width: calc(50% - var(--size-6));
+}
+
+.article {
+  box-sizing: border-box;
+  margin-bottom: var(--space-small);
+  border-radius: var(--radius-small);
+  border: 1px solid var(--colors-base-grey-400);
+  background: var(--colors-base-background);
+  padding: var(--size-8);
+
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.svgDeco {
+  fill: var(--colors-themed-primary);
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  z-index: 0;
+  width: 100%;
+  height: auto;
+}
+
+.svgDeco path {
+  opacity: 0.05;
+}
+
+.svgDeco path:first-child {
+  opacity: 0.1;
+}
+
+.image {
+  margin-bottom: var(--size-8);
+}
+
+.title {
+  margin-bottom: var(--size-8);
+}
+
+.teaser {
+  flex-grow: 1;
+}
+
+.big {
+  flex-grow: 1;
+  max-width: calc(50% - var(--size-6));
+  justify-content: flex-end;
+}
+
+.big .image {
+  align-self: flex-start;
+}
+
+.big .teaser {
+  flex-grow: 0;
+}
+
+.metaAuthor {
+  font-size: var(--font-size-body-smaller);
+  color: var(--colors-text-muter);
+  padding-bottom: 16px;
+}
+
+.teaser {
+  opacity: 0.85;
+  font-size: 16px;
+  line-height: 200%;
+  margin-top: 1rem;
+}
+
+.overline {
+  padding-bottom: var(--size-8);
+}
+
+.readMore {
+  align-self: flex-end;
+  margin-top: var(--size-4);
+}
+
+.readMoreButton {
+}
+
+@media (--xs), (--sm) {
+  .root {
+    flex-direction: column;
+  }
+
+  .side {
+    max-width: 100%;
+    margin-bottom: var(--space-small);
+  }
+
+  .big {
+    max-width: 100%;
+    margin-bottom: var(--space-small);
+  }
+
+  .article {
+    flex-grow: 1;
+    justify-content: flex-end;
+  }
+
+  .article .image {
+    align-self: flex-start;
+  }
+
+  .article .teaser {
+    flex-grow: 0;
+  }
+}
+
+@media (--sm) {
+  .root {
+    flex-direction: column;
+  }
+
+  .side {
+    max-width: 100%;
+    margin-bottom: var(--space-small);
+    display: flex;
+    flex-direction: row;
+  }
+
+  .side .article {
+    flex-grow: 1;
+    width: 50%;
+    max-width: none;
+    min-width: none;
+  }
+
+  .side .article:first-child {
+    margin-right: var(--space-small);
+  }
+  
+  .big {
+    max-width: 100%;
+    margin-bottom: var(--space-small);
+  }
+}

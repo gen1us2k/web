@@ -6,12 +6,12 @@ import Container from '../../freestanding/containers/container'
 import Grid from '../../freestanding/containers/grid'
 
 import { pb32 } from '../../freestanding/utils/padding.module.css'
-import { hero } from './hero.module.css'
+import * as styles from './hero.module.css'
 
 export interface PropTypes {
   id: string
   title: string | React.ReactElement
-  description: string
+  description: string | React.ReactElement
   buttons?: Array<HeroCTA>
 }
 
@@ -25,7 +25,7 @@ interface HeroCTA {
 }
 
 const Hero = ({ id, title, description, buttons }: PropTypes) => (
-  <div id={id} className={cn(hero)}>
+  <div id={id} className={cn(styles.hero)}>
     <Container
       fluid={true}
       flexContainer={'column'}
@@ -34,7 +34,7 @@ const Hero = ({ id, title, description, buttons }: PropTypes) => (
     >
       <Grid lg={6} md={6} sm={12} xs={12} className={cn(pb32)}>
         <Container className={cn('text-is-centered', pb32)}>
-          <h1 className={cn('font-display', pb32)}>{title}</h1>
+          <h1 className={cn('font-display', pb32, styles.title)}>{title}</h1>
           <p className={cn('font-p-display', pb32)}>{description}</p>
         </Container>
         <Container justify={'center'}>

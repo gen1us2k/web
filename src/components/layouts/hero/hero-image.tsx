@@ -12,7 +12,7 @@ import * as styles from './hero-image.module.css'
 export interface PropTypes {
   id: string
   title: string | React.ReactElement
-  description: string
+  description: string | React.ReactElement
   image: React.ReactElement
   buttons?: Array<HeroCTA>
 }

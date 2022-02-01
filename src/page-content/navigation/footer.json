@@ -1,0 +1,155 @@
+{
+  "social": [
+    {
+      "to": "https://www.github.com/ory",
+      "openInNewWindow": true,
+      "icon": "ph-github-logo-fill"
+    },
+    {
+      "to": "https://www.youtube.com/channel/UC9hCxZZeviexX0GclD0brrw",
+      "openInNewWindow": true,
+      "icon": "ph-youtube-logo-fill"
+    },
+    {
+      "to": "https://twitter.com/orycorp",
+      "openInNewWindow": true,
+      "icon": "ph-twitter-logo-fill"
+    },
+    {
+      "to": "https://slack.ory.sh/",
+      "openInNewWindow": true,
+      "icon": "ph-slack-logo-fill"
+    },
+    {
+      "to": "https://www.linkedin.com/company/ory-corp/",
+      "openInNewWindow": true,
+      "icon": "ph-linkedin-logo-fill"
+    }
+  ],
+  "legal": [
+    {
+      "title": "Status",
+      "to": "https://status.ory.sh/",
+      "openInNewWindow": true
+    },
+    {
+      "title": "Privacy",
+      "to": "/privacy"
+    },
+    {
+      "title": "Terms of Service",
+      "to": "/tos"
+    }
+  ],
+  "category": [
+    {
+      "menuCategory": "Ory Cloud",
+      "menuItems": [
+        {
+          "title": "Cloud",
+          "to": "https://console.ory.sh/registration",
+          "openInNewWindow": true
+        },
+        {
+          "title": "Pricing",
+          "to": "/pricing"
+        }
+      ]
+    },
+    {
+      "menuCategory": "Ory Open Source",
+      "menuItems": [
+        {
+          "title": "Overview",
+          "to": "/open-source"
+        },
+        {
+          "title": "Hydra",
+          "to": "/hydra"
+        },
+        {
+          "title": "Kratos",
+          "to": "/kratos"
+        },
+        {
+          "title": "Keto",
+          "to": "/keto"
+        },
+        {
+          "title": "Oathkeeper",
+          "to": "/oathkeeper"
+        }
+      ]
+    },
+    {
+      "menuCategory": "Developers",
+      "menuItems": [
+        {
+          "title": "Documentation",
+          "to": "/docs"
+        },
+        {
+          "title": "Community",
+          "to": "/community"
+        },
+        {
+          "title": "Blog",
+          "to": "/blog"
+        },
+        {
+          "title": "NextJS",
+          "to": "/nextjs"
+        },
+        {
+          "title": "GitHub",
+          "to": "https://github.com/ory",
+          "openInNewWindow": true
+        }
+      ]
+    },
+    {
+      "menuCategory": "Company",
+      "menuItems": [
+        {
+          "title": "About us",
+          "to": "/about"
+        },
+        {
+          "title": "Jobs",
+          "to": "/jobs",
+          "dotted": true
+        },
+        {
+          "title": "Identity Report",
+          "to": "/identity-in-modern-applications-oreilly"
+        }
+      ]
+    },
+    {
+      "menuCategory": "Events",
+      "menuItems": [
+        {
+          "title": "Ory Summit",
+          "to": "/summit21",
+          "openInNewWindow": true,
+          "dotted": true
+        }
+      ]
+    },
+    {
+      "menuCategory": "Talk to us",
+      "menuItems": [
+        {
+          "title": "Contact",
+          "to": "mailto:office@ory.sh",
+          "openInNewWindow": true
+        },
+        {
+          "title": "Slack",
+          "to": "https://slack.ory.sh/",
+          "openInNewWindow": true
+        }
+      ]
+    }
+  ]
+}

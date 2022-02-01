@@ -11,7 +11,8 @@ import * as styles from './footer.module.css'
 interface MenuItem {
   to: string
   openInNewWindow?: boolean
-  title: string | React.ReactElement
+  title: string
+  dotted?: boolean
 }
 
 export interface MenuCategory {
@@ -27,7 +28,6 @@ interface FooterMain {
 
 export interface FooterPropTypes {
   logo: string
-  copyright: React.ReactElement
   social: Array<Social>
   legal: Array<MenuItem>
   category: Array<MenuCategory>
@@ -50,7 +50,7 @@ const FooterMain = ({ className, logo, category }: FooterMain) => (
         </Grid>
         <Grid lg={6} md={8} sm={12} xs={12}>
           <Container alignItems={'start'} justify={'space-between'}>
-            {category.map(({ menuCategory, menuItems }, index) => (
+            {category?.map(({ menuCategory, menuItems }, index) => (
               <div key={index} className={cn(styles.footerCategories)}>
                 <p
                   className={cn(
@@ -62,7 +62,12 @@ const FooterMain = ({ className, logo, category }: FooterMain) => (
                 >
                   {menuCategory}
                 </p>
-                {menuItems.map(({ to, openInNewWindow, title }, index) => (
+                {menuItems.map(({
+                  to,
+                  openInNewWindow,
+                  title,
+                  dotted,
+                }, index) => (
                   <Button
                     key={index}
                     style={'footer'}
@@ -70,6 +75,7 @@ const FooterMain = ({ className, logo, category }: FooterMain) => (
                     openInNewWindow={openInNewWindow}
                   >
                     {title}
+                    {dotted ? (<span className={cn('dot')} />) : null}
                   </Button>
                 ))}
               </div>
@@ -84,17 +90,16 @@ const FooterMain = ({ className, logo, category }: FooterMain) => (
 interface Social {
   to: string
   openInNewWindow?: boolean
-  icon: React.ReactElement
+  icon: string
 }
 
 interface FooterSub {
   className?: string
-  copyright: React.ReactElement
   social: Array<Social>
   legal: Array<MenuItem>
 }
 
-const FooterSub = ({ className, copyright, social, legal }: FooterSub) => (
+const FooterSub = ({ className, social, legal }: FooterSub) => (
   <Container fluid={true}>
     <Grid lg={12} md={12} sm={12} xs={12}>
       <Container
@@ -108,13 +113,13 @@ const FooterSub = ({ className, copyright, social, legal }: FooterSub) => (
             alignItems={'center'}
             className={styles.footerSocialIcons}
           >
-            {social.map(({ to, openInNewWindow, icon }, index) => (
+            {social?.map(({ to, openInNewWindow, icon }, index) => (
               <Button
                 key={index}
                 style={'icon'}
                 to={to}
                 openInNewWindow={openInNewWindow}
-                iconLeft={icon}
+                iconLeft={<i className={`${icon} size24`} />}
               />
             ))}
           </Container>
@@ -124,9 +129,9 @@ const FooterSub = ({ className, copyright, social, legal }: FooterSub) => (
             flexContainer={'column'}
             alignItems={['end-lg', 'end-md', 'end-sm', 'center-xs']}
           >
-            <p className={cn('font-p-smaller')}>{copyright}</p>
+            <p className={cn('font-p-smaller')}>© Copyright 2022 Ory Corp</p>
             <Container justify={'center-xs'}>
-              {legal.map(({ to, openInNewWindow, title }, index) => (
+              {legal?.map(({ to, openInNewWindow, title }, index) => (
                 <Button
                   className={styles.footerLegal}
                   key={index}
@@ -148,7 +153,6 @@ const FooterSub = ({ className, copyright, social, legal }: FooterSub) => (
 const Footer = ({
   logo,
   category,
-  copyright,
   social,
   legal
 }: FooterPropTypes) => (
@@ -157,7 +161,7 @@ const Footer = ({
       <FooterMain className={cn(pb32)} category={category} logo={logo} />
     </div>
     <div className={cn(styles.footerSub, 'background-is-dark')}>
-      <FooterSub copyright={copyright} social={social} legal={legal} />
+      <FooterSub social={social} legal={legal} />
     </div>
   </>
 )

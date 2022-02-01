@@ -3,6 +3,14 @@
   padding: var(--space-larger) 0;
 }
 
+.no-background {
+  background: none;
+}
+
+.small-padding {
+  padding: var(--space-small) 0;
+}
+
 .text-align {
   text-align: center;
 }

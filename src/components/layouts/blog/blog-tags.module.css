@@ -1,0 +1,36 @@
+.root {
+  margin-top: var(--space-small);
+}
+
+.list {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  list-style: none;
+  padding: 0;
+  margin: 0 calc(-1 * var(--size-3));
+}
+
+.item {
+  list-style: none;
+  padding: calc(0.5 * var(--size-1)) var(--size-3);
+  margin: 0;
+}
+
+.active {
+  background-color: var(--colors-themed-primary);
+  color: var(--colors-base-white);
+  border-radius: var(--size-6);
+}
+
+.link {
+  color: currentColor
+}
+
+.name {
+}
+
+.count {
+}

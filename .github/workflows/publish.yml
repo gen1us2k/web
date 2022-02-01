@@ -11,6 +11,7 @@ jobs:
 
   # This job will:
   #   * deploy a draft every time there is a pull request created or synchronized that is not on master branch
+  #   * build the Storybook and add it to the public folder when the PR branch contains 'with-storybook'
   #   * comment on that pull request with the deploy URL
   deployPRDraft:
     name: Deploy draft to Netlify
@@ -27,6 +28,12 @@ jobs:
 
       - run: npm ci
       - run: NODE_ENV=production npm run build
+        
+      - name: Conditionally build Storybook
+        if: contains('with-storybook', github.head_branch)
+        run: |
+          NODE_ENV=production npm run build-storybook
+          mv storybook-static public/storybook
 
       - name: Publish draft
         id: deploy-neflify

@@ -11,8 +11,9 @@ import 'prismjs/components/prism-yaml'
 import React, { useEffect } from 'react'
 import Helmet from 'react-helmet'
 
-import * as footer from '../../../page-content/navigation/navigation-footer'
-import * as nav from '../../../page-content/navigation/navigation-header'
+import footer from '../../../page-content/navigation/footer.json'
+import { sideNav } from '../../../page-content/navigation/navigation-header'
+import nav from '../../../page-content/navigation/header.json'
 import Footer from '../footer/footer'
 import Navigation from '../navigation/navigation'
 import EventLayout from '../summit/event-layout'
@@ -33,9 +34,8 @@ const Layout = ({ children, theme, isEvent }: PropTypes) => {
     <div className={cn(styles.layout)}>
       <Navigation
         logo={oryLogoPrimary}
-        {...nav.sideNav}
-        {...nav.dropdownMenu}
-        {...nav.mobileMenu}
+        {...sideNav}
+        {...nav}
       />
       <main
         className={cn(
@@ -47,10 +47,7 @@ const Layout = ({ children, theme, isEvent }: PropTypes) => {
       </main>
       <Footer
         logo={oryLogoWhite}
-        {...footer.copyright}
-        {...footer.social}
-        {...footer.legal}
-        {...footer.links}
+        {...footer}
       />
     </div>
   )

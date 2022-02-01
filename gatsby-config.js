@@ -318,6 +318,26 @@ module.exports = {
     //     environments: ['production', 'development']
     //   }
     // }
-    "gatsby-plugin-netlify", // make sure to keep it last in the array
+    
+    // make sure to keep it last in the array
+    {
+      resolve: "gatsby-plugin-netlify",
+      options: {
+        // It seems like there's an issue with the _headers file and the `X-Frame-Options` header.
+        // https://answers.netlify.com/t/x-frame-options-header-not-updated-cached-headers/29070
+        // The following lines is a workaround for this issue.
+        // https://answers.netlify.com/t/change-the-header-x-frame-options-to-one-of-my-environments/27974/9
+        headers: {
+          "/*": [
+            "X-Frame-Options: SAMEORIGIN",
+            "X-XSS-Protection: 1",
+            "Content-Security-Policy: default-src 'self' blob: 'unsafe-inline' 'unsafe-eval' unpkg.com miro.com *.algolianet.com *.algolianet.net storage.googleapis.com tagmanager.google.com *.googletagmanager.com *.google-analytics.com google-analytics.com ssl.gstatic.com gstatic.com fonts.gstatic.com github.com *.githubusercontent.com gh-card.dev *.ory.sh *.youtube.com *.youtube-nocookie.com fonts.googleapis.com fonts.gstatic.com data: s.ytimg.com *.iubenda.com *.cloudfront.net *.licdn.com *.hs-scripts.com *.hsleadflows.net *.hs-banner.com *.hsadspixel.net *.hubspotfeedback.com *.usemessages.com *.hs-analytics.net *.hscollectedforms.net *.hsforms.net *.hsforms.com *.g.doubleclick.net *.hubapi.com *.hubspot.com; img-src * data:",
+            "X-Content-Type-Options: nosniff",
+            "Referrer-Policy: strict-origin-when-cross-origin",
+            "Permissions-Policy: accelerometer=(), ambient-light-sensor=(), battery=(), camera=(), display-capture=(), geolocation=(), gyroscope=(), magnetometer=(), microphone=(), midi=(), usb=()",
+          ],
+        },
+      },
+    },
   ]
 }

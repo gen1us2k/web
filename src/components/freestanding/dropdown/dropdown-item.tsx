@@ -11,6 +11,7 @@ export interface DropdownItem {
   openInNewWindow?: boolean
   description?: string
   className?: string
+  dotted?: boolean
   onClick: () => void
 }
 
@@ -20,6 +21,7 @@ const DropdownItem = ({
   title,
   openInNewWindow = false,
   description,
+  dotted,
   onClick
 }: DropdownItem) => (
   <div className={cn(styles.dropdownItem, className && className)}>
@@ -40,6 +42,7 @@ const DropdownItem = ({
             )}
           >
             {description}
+            {dotted ? (<span className={cn('dot')} />) : null}
           </p>
         )}
       </div>

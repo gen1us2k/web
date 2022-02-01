@@ -8,11 +8,12 @@ import { menuItem, menuButton } from './menu-item.module.css'
 interface PropType {
   title: string | React.ReactElement
   children?: React.ReactElement
+  dotted?: boolean
   className?: string
-  onClick: () => void
+  onClick: string | (() => void)
 }
 
-const MenuItem = ({ className, title, onClick, children }: PropType) => (
+const MenuItem = ({ className, title, dotted, onClick, children }: PropType) => (
   <div>
     <li aria-haspopup="true" className={cn(menuItem, className && className)}>
       {typeof title === 'string' ? (
@@ -24,8 +25,9 @@ const MenuItem = ({ className, title, onClick, children }: PropType) => (
           {children}
         </>
       ) : (
-        <div onClick={onClick}>{title}</div>
+        <div onClick={typeof onClick === 'function' ? onClick : () => {}}>{title}</div>
       )}
+      {dotted ? (<span className={cn('dot')} />) : null}
     </li>
   </div>
 )

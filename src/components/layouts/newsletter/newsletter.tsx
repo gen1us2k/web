@@ -25,15 +25,25 @@ const projects = {
 interface PropTypes {
   background?: 'dark' | 'grey' | 'light-grey' | 'themed'
   slant?: boolean
+  smallpadding?: boolean
   special?: ReactNode
-  preselect?: keyof typeof projects
+  preselect?: keyof typeof projects,
+  title?: string
+  teaser?: string
+  placeholder?: string
+  submit?: string
 }
 
 const Newsletter = ({
   slant = true,
+  smallpadding,
   background = 'dark',
   preselect,
-  special
+  special,
+  title = 'Never miss a patch',
+  teaser = 'Ory ships regular product patches and updates. Subscribe to our newsletter to get the good stuff, and stay up to date.',
+  placeholder = 'Enter your email',
+  submit = 'Subscribe'
 }: PropTypes) => {
   const [email, setEmail] = useState('')
 
@@ -57,6 +67,8 @@ const Newsletter = ({
       className={cn(
         styles.newsletter,
         {
+          [styles.smallPadding]: smallpadding,
+          [styles.noBackground]: !background,
           ['background-is-grey']: background === 'grey',
           ['background-is-dark']: background === 'dark',
           ['background-is-light-grey']: background === 'light-grey',
@@ -75,10 +87,9 @@ const Newsletter = ({
                 special
               ) : (
                 <>
-                  <h3 className={cn('font-h2', pb32)}>Never miss a patch</h3>
+                  <h3 className={cn('font-h2', pb32)}>{title}</h3>
                   <p className={cn('font-p', pb32)}>
-                    Ory ships regular product patches and updates. Subscribe to
-                    our newsletter to get the good stuff, and stay up to date.
+                    {teaser}
                   </p>
                 </>
               )}
@@ -90,7 +101,7 @@ const Newsletter = ({
               {
                 type: 'email',
                 name: 'email',
-                placeholder: 'Enter your email',
+                placeholder,
                 required: true,
                 onChange: onChange,
                 value: email
@@ -98,7 +109,7 @@ const Newsletter = ({
               {
                 type: 'submit',
                 name: 'submit',
-                value: 'Subscribe'
+                value: submit
               }
             ]}
             onSubmit={onSubmit}

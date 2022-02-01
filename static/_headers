@@ -1,7 +1,8 @@
-/*
-  X-Frame-Options: SAMEORIGIN
-  X-XSS-Protection: 1
-  Content-Security-Policy: default-src 'self' blob: 'unsafe-inline' 'unsafe-eval' unpkg.com miro.com *.algolianet.com *.algolianet.net storage.googleapis.com tagmanager.google.com *.googletagmanager.com *.google-analytics.com google-analytics.com ssl.gstatic.com gstatic.com fonts.gstatic.com github.com *.githubusercontent.com gh-card.dev *.ory.sh *.youtube.com *.youtube-nocookie.com fonts.googleapis.com fonts.gstatic.com data: s.ytimg.com *.iubenda.com *.cloudfront.net *.licdn.com *.hs-scripts.com *.hsleadflows.net *.hs-banner.com *.hsadspixel.net *.hubspotfeedback.com *.usemessages.com *.hs-analytics.net *.hscollectedforms.net *.hsforms.net *.hsforms.com *.g.doubleclick.net *.hubapi.com *.hubspot.com; img-src * data:
-  X-Content-Type-Options: nosniff
-  Referrer-Policy: strict-origin-when-cross-origin
-  Permissions-Policy: accelerometer=(), ambient-light-sensor=(), battery=(), camera=(), display-capture=(), geolocation=(), gyroscope=(), magnetometer=(), microphone=(), midi=(), usb=()
+# using gatsby-plugin-netlify instead, see end of gatsby-config.js
+# /*
+#   X-Frame-Options: SAMEORIGIN
+#   X-XSS-Protection: 1
+#   Content-Security-Policy: default-src 'self' blob: 'unsafe-inline' 'unsafe-eval' unpkg.com miro.com *.algolianet.com *.algolianet.net storage.googleapis.com tagmanager.google.com *.googletagmanager.com *.google-analytics.com google-analytics.com ssl.gstatic.com gstatic.com fonts.gstatic.com github.com *.githubusercontent.com gh-card.dev *.ory.sh *.youtube.com *.youtube-nocookie.com fonts.googleapis.com fonts.gstatic.com data: s.ytimg.com *.iubenda.com *.cloudfront.net *.licdn.com *.hs-scripts.com *.hsleadflows.net *.hs-banner.com *.hsadspixel.net *.hubspotfeedback.com *.usemessages.com *.hs-analytics.net *.hscollectedforms.net *.hsforms.net *.hsforms.com *.g.doubleclick.net *.hubapi.com *.hubspot.com; img-src * data:
+#   X-Content-Type-Options: nosniff
+#   Referrer-Policy: strict-origin-when-cross-origin
+#   Permissions-Policy: accelerometer=(), ambient-light-sensor=(), battery=(), camera=(), display-capture=(), geolocation=(), gyroscope=(), magnetometer=(), microphone=(), midi=(), usb=()

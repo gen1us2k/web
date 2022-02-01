@@ -2,3 +2,9 @@
   padding: var(--space-medium) 0;
   background: var(--colors-base-background);
 }
+
+@media (--xs) {
+  .title {
+    font-size: 3rem
+  }
+}

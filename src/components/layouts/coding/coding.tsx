@@ -30,7 +30,7 @@ export interface PropTypes {
   additional?: Additional
   button?: CodingCTA
   codebox: React.ReactNode
-  content: Array<CodingContent>
+  content?: Array<CodingContent>
 }
 
 interface Additional {

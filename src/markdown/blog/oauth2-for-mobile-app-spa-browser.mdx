@@ -21,6 +21,8 @@ teaser: >
   security.
 
 overline: Mobile & Native App Security
+tags:
+  - Authentication as a service
 ---
 
 In this article we will cover best practices for OAuth2- and OpenID Connect
@@ -96,21 +98,30 @@ apps are so common, there’s even an article on
 on this topic.
 
 <table width="100%">
-    <tr>
-        <td width="50%">
-            <img loading="lazy" alt="Legitimate Application without Browser Authorization" src="../../images/articles/mobile-oauth2/login-app.png"/>
-        </td>
-        <td width="50%">
-            <img loading="lazy" alt="Legitimate Application without Browser Authorization" src="../../images/articles/mobile-oauth2/login-app.png"/>
-        </td>
-    </tr>
-    <tr align="center">
-        <td colspan="2">
-        <p>
-            Without a browser address bar, there is no way to distinguish between a legitimate and an illegimitate app.
-        </p>
-        </td>
-    </tr>
+  <tr>
+    <td width="50%">
+      <img
+        loading="lazy"
+        alt="Legitimate Application without Browser Authorization"
+        src="../../images/articles/mobile-oauth2/login-app.png"
+      />
+    </td>
+    <td width="50%">
+      <img
+        loading="lazy"
+        alt="Legitimate Application without Browser Authorization"
+        src="../../images/articles/mobile-oauth2/login-app.png"
+      />
+    </td>
+  </tr>
+  <tr align="center">
+    <td colspan="2">
+      <p>
+        Without a browser address bar, there is no way to distinguish between a
+        legitimate and an illegimitate app.
+      </p>
+    </td>
+  </tr>
 </table>
 
 If a browser is involved, the user will see the URL and be able to validate the
@@ -119,21 +130,30 @@ but this time in a browser. You should be able to spot which one is the phishing
 site and which one isn’t.
 
 <table width="100%">
-    <tr>
-        <td width="50%">
-            <img loading="lazy" alt="Legitimate Application with Browser Authorization" src="../../images/articles/mobile-oauth2/login-app-legitimate.png"/>
-        </td>
-        <td width="50%">
-            <img loading="lazy" alt="Illegitimate Application with Browser Authorization" src="../../images/articles/mobile-oauth2/login-app-counterfeit.png"/>
-        </td>
-    </tr>
-    <tr align="center">
-        <td colspan="2">
-            <p>
-                Without the browser address bar, you can easily spot the illegitimate app (right).
-            </p>
-        </td>
-    </tr>
+  <tr>
+    <td width="50%">
+      <img
+        loading="lazy"
+        alt="Legitimate Application with Browser Authorization"
+        src="../../images/articles/mobile-oauth2/login-app-legitimate.png"
+      />
+    </td>
+    <td width="50%">
+      <img
+        loading="lazy"
+        alt="Illegitimate Application with Browser Authorization"
+        src="../../images/articles/mobile-oauth2/login-app-counterfeit.png"
+      />
+    </td>
+  </tr>
+  <tr align="center">
+    <td colspan="2">
+      <p>
+        Without the browser address bar, you can easily spot the illegitimate
+        app (right).
+      </p>
+    </td>
+  </tr>
 </table>
 
 It becomes apparent that you should train the user’s eye and opt for

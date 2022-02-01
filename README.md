@@ -56,6 +56,16 @@ Alternatively, you can run `npm run start:gatsby` and `npm run start:netlifycmsp
 You can then visit http://localhost:8000 in your browser (if you use the default port)
 and http://localhost:8000/admin to use the Netlify CMS.
 
+### CI
+
+Pull requests will automatically be deployed to a Netlify preview URL (made availiable in the PR discussion).
+
+If you wish to build the Storybook, you can do so by adding `with-storybook` in the name of your branch.
+
+The Storybook will then be available at `/storybook`.
+
+**TBC:** Should we check the commit message instead? Is it possible?
+
 ## Icons
 
 [phosphoricons.com](https://github.com/phosphor-icons/phosphor-react)

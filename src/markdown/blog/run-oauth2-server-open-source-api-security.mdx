@@ -26,6 +26,9 @@ teaser:
   OpenID Connect provider using open source only. It will take you about ~10
   minutes. We will use Ory Hydra (open source), a security-first OAuth2 and
   OpenID Connect server written in Golang.
+tags:
+  - Self Service
+  - Open Source
 ---
 
 In this guide you will set up a hardened, fully functional OAuth2 Server and
@@ -102,16 +105,22 @@ repositories you want to grant access to and if it is ok to grant other data
 (access to your email address, profile picture, ...) CircleCI has requested:
 
 <p>
-<figure>
-  <video autoplay muted loop playsInline>
-     <source src="../../images/articles/oauth2/oauth2-flow.mp4" type="video/mp4"/>
-     <source src="../../images/articles/oauth2/oauth2-flow.webm" type="video/webm"/>
-  </video>
-  <figcaption>
-    A typical OAuth2 Flow with GitHub acting as the OAuth2 Server
-    and OpenID Connect Provider, and CircleCI as the OAuth2 Client.
-  </figcaption>
-</figure>
+  <figure>
+    <video autoplay muted loop playsInline>
+      <source
+        src="../../images/articles/oauth2/oauth2-flow.mp4"
+        type="video/mp4"
+      />
+      <source
+        src="../../images/articles/oauth2/oauth2-flow.webm"
+        type="video/webm"
+      />
+    </video>
+    <figcaption>
+      A typical OAuth2 Flow with GitHub acting as the OAuth2 Server and OpenID
+      Connect Provider, and CircleCI as the OAuth2 Client.
+    </figcaption>
+  </figure>
 </p>
 
 A more technical overview of the protocol and related terminologies - such
