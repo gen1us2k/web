@@ -1,0 +1,181 @@
+---
+templateKey: blogpost
+tags:
+  - slack
+path: "/building-slack-bots-using-events-api/"
+author: gen1us2k
+title: Building Slack bot using Slack events API
+teaser: In this article I'll show you a cost effective way to build bots for slack
+overline: Cost effective slack bots on AWS Lambda
+publishedAt: 2022-02-11
+published: true
+---
+import CodeFromRemote from '../../components/freestanding/utils/codefromremote'
+
+I’m a huge fan of automation working processes. I try to automate everything and save someone’s time. This article will show you a simple example of building a simple slack bot using Slack Events API for the organization and host it on AWS Lambda.
+
+
+## Why
+
+We have a greeter bot in our Ory Community slack. It helps newly joined members get to know our products better and give a brief introduction. Vincent came up with the idea to improve that process, and the developer relations team should:
+
+- Message each new member personally
+- Ask them what their biggest challenges/struggles are/ what they want to resolve by joining this community
+- Ask them to share that struggle in the #general channel so we can help them (and others at the same time)
+- Ideally, this would be a pre-composed message, and some Slackbot would either post these under the Developer Advocate account or there is a list of new members the team can click through.
+
+After reading [API documentation](https://api.slack.com/) for Slack, I found that we can solve this challenge in two ways:
+
+- Ping the DevRel team and ask them to greet a user
+- Send a greeting message from a slack user
+
+The bot can use User OAuth Token to send messages as a user. In the next part of the blog post, I’ll tell you how to build it.
+
+## Using Slack API
+
+Slack offers you a few examples of using APIs:
+
+- [Realtime API](https://api.slack.com/rtm)
+- [Webhook integration](https://api.slack.com/messaging/webhooks)
+- [Events API](https://api.slack.com/apis/connections/events-api)
+
+I built slack bots before, and the following two chapters are about the difference between WebSockets integration and events API. Just for convenience, let’s say that events API and webhook integration works almost the same way.
+
+### Websockets
+Websockets is an excellent protocol. It's easy to implement, developer friendly, and works on top of HTTP1/1. The protocol was first described in 2008, and in 2010 there was broad browser support. Websockets back in the days made developer experience building realtime web applications easier because you don't need to deal with [BOSH](https://en.wikipedia.org/wiki/BOSH_(protocol)) and [chunked encoding](https://en.wikipedia.org/wiki/Chunked_transfer_encoding) of HTTP1/1. Furthermore, new architectural patterns and paradigms such as [Event-Driven Architecture](https://en.wikipedia.org/wiki/Event-driven_architecture) and [Event-Driven SOA](https://en.wikipedia.org/wiki/Event-driven_SOA) were described.
+
+Despite the benefits described above, WebSockets have drawbacks. One of the most significant drawbacks is that it's built on-top-of HTTP/1.1 and keeps the connection open. It leads to scaling problems when you have more users for your application. We have two ways to scale our application:
+
+- Vertical scaling. You add more resources such as RAM/disk/CPU or buy a new server.
+- Horizontal scaling. You add more servers. You can move a database, webserver, or something else to a different server. Sometimes you need to scale your application horizontally.
+
+Horizontal scaling requires load balancing between the servers. Balancing HTTP traffic is easier than WebSockets, and almost all load balancers such as nginx, envoy, istio balances traffic on L4 of the [OSI model](https://en.wikipedia.org/wiki/OSI_model). It would be best to implement load balancing mechanisms on L7 when you work with WebSockets to have evenly loaded servers.
+
+Furthermore, it would be best to keep in mind that networks are unreliable and that third parties may close connections, and your application needs to handle it gracefully. In addition, you need to have a persistent listener of incoming events, which leads to the situation when you need to have  EC2/VPS or any other server to run your code, but this is the cost-ineffective solution.
+
+### Events API
+
+Events API works differently. You need to have a webserver that will be publicly accessible and have an events handler implemented in your app. According to the documentation of Slack Events API, you need to implement the following steps:
+
+- Use their signing tokens for incoming requests.
+- Handle URL verification challenge by your app. The app needs to sign the incoming request and return the incoming challenge parameter.
+
+The only thing we need to have is a webserver with a simple REST API endpoint. It allows us to use various cloud features to run our bot and save money. For instance, we can use AWS Lambda, trigger it with API Gateway. The best part of this is that we can use Free tier plan. That's why I'm a huge fan of Events API from Slack. Let's build our bot, huh?
+
+
+## Implementing the bot
+
+We will use Go programming language to build our bot. What we need to have:
+- Configuration for the bot using 12factors.net. In that case we will use [envconfig](https://github.com/kelseyhightower/envconfig) package because its simplicity
+- `net/http` package for local development and testing
+- [Ngrok](https://ngrok.com/) to make our web app accessible from the internet
+- [AWS Go SDK](https://aws.amazon.com/sdk-for-go/)
+
+## Implementing configuration
+
+Let's create a `config` package
+
+<CodeFromRemote
+  lang="go"
+  src="https://github.com/gen1us2k/mrrobot/blob/master/config/config.go"
+/>
+
+It's always a good idea to have some tests.
+
+<CodeFromRemote
+  lang="go"
+  src="https://github.com/gen1us2k/mrrobot/blob/master/config/config_test.go"
+/>
+
+We can check it by simply running `go test ./…`
+
+### Slack events API handler
+We can have the example taken from [Slack Go SDK](https://github.com/slack-go/slack/blob/master/examples/eventsapi/events.go) because of its simplicity. We need to extend this example with the following parts:
+
+- Configurable welcome message sending
+- Support of AWS Lambda since it has its SDK. The support for the Go can be achieved using [algnhsa](https://github.com/akrylysov/algnhsa) library.
+Check out the code below.
+
+<CodeFromRemote
+  lang="go"
+  src="https://github.com/gen1us2k/mrrobot/blob/master/app/app.go"
+/>
+The lastest part is to have `cmd/mrrobot/main.go` file with the following content
+
+<CodeFromRemote
+  lang="go"
+  src="https://github.com/gen1us2k/mrrobot/blob/master/cmd/mrrobot/main.go"
+/>
+
+
+
+### Creating Slack bot
+
+1. Press 'Create New App' button on [Slack apps page](https://api.slack.com/apps)
+2. Click on 'From scratch' and then input your bot name and choose a workspace to install the bot
+3. Copy `Signing Secret` and store it somewhere. You'll need it to configure AWS Lambda function
+4. Go to the `OAuth & Permissions` and generate access tokens under `Oauth Tokens for YOur Workspace`. `User Oauth Token` is required when you want to send message from a user and `Bot User Oauth Token` is required for bot user. You'll need it to configura AWS Lambda.
+5. Under the scopes add `chat:write` for both `Bot Token` and `User token` scopes
+
+## Deploying to AWS lambda
+
+1. Signin to [AWS Console](https://console.aws.amazon.com/)
+2. Go to the Lambda section and press `Create function` button
+3. Choose `Author from scratch` input the name of the function. Choose `Go 1.x` for the runtime and architecture `x86_64` and then create a function
+4. Open `Configuration` -> `Environment variables`
+5. Set your `Signing Token` to `SLACK_SIGNING_SECRET` variable
+6. Set your welcome message to `WELCOME_MESSAGE` variable
+7. Set your bot token to `SLACK_BOT_TOKEN` variable
+8. Set `production` to `ENV` variable
+9. Go to the `Code` section and scroll down to `Runtime settings` and change `Handler` from `hello` to `mrrobot`
+
+### Configuring AWS Gateway
+
+
+1. Create a new REST API.
+2. In the "Resources" section create a new `ANY` method to handle requests to `/` (check "Use Lambda Proxy Integration").
+
+    ![API Gateway index](https://akrylysov.github.io/algnhsa/apigateway-index.png)
+
+3. Add a catch-all `{proxy+}` resource to handle requests to every other path (check "Configure as proxy resource").
+
+        ![API Gateway catch-all](https://akrylysov.github.io/algnhsa/apigateway-catchall.png)
+
+## Final steps
+
+You need to upload zip archive with compiled binary to the AWS lambda. In that case, make can help us and it allows you to automate operations since 1976. Also it always a great idea to have them self-documented
+
+```make
+.PHONY: help
+
+help:
+	        @grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | sort | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-30s\033[0m %s\n", $$1, $$2}'
+
+lint: ## Runs linter against the code
+	        golangci-lint run ./...
+
+test: ## Run tests locally
+	        go test ./...
+
+build_docker: ## Build docker image
+	        docker build -t mrrobot .
+
+build_linux: ## Build executable for linux system
+	        GOOS=linux GOARCH=amd64 go build -o mrrobot cmd/mrrobot/main.go
+
+zip: build_linux  ## Build and create a zip archive for deploying to AWS lambda
+	        zip main.zip mrrobot
+```
+
+1. Run `make zip`
+2. Open your function on `AWS Lambda`
+3. Choose `Upload from` under the source code section
+4. Upload it and run
+5. Choose your application on [Apps page](https://api.slack.com/apps) on Slack, click on `Add features and functionality` and choose `Event subscriptions`
+6. Insert URL of your API Gateway to the `Request URL` field, pass the verification step and click `Save`
+7. Open `Subscribe to bot events` and choose `team_join` event and then press `Save`
+
+That's it. You can invite any user and test the bot.
+
+## Conclusion and takeaways
+As you can see the slack events api helps you to build bots and automate your routine. Also, you don’t need to spend money on hosting.
